@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "MCFoundationKit"
-  spec.version      = "1.0.1"
+  spec.version      = "1.0.2"
   spec.summary      = "自定义基础工具库."
 
   # This description is used to generate tags and improve search results.
@@ -25,7 +25,22 @@ Pod::Spec.new do |spec|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   spec.description  = <<-DESC
-  											自定义基础工具库
+  											自定义基础工具库杂集
+  											包括：
+  												1.获取工程配置信息
+  												2.View操作，圆角、阴影、动画
+  												3.Audio，播放铃声、振动，循环播放
+  												4.String常用方法，全角半角、utf8、url encode、转json array dic
+  												5.RSA加密解密
+  												6.BitSet，仿照Java解析
+  												7.UserDefaults，本地化存储
+  												8.FileManager，文件操作
+  												9.ModalDialog，自定义模态框
+  												10.时间转换
+  												11.数据转换，16进制、10进制、2进制
+  												12.图片转换
+  												13.颜色转换
+  												等。
                    		DESC
 
   spec.homepage     = "https://github.com/Cli816/MCFoundationKit"

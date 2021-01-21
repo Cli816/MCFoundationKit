@@ -20,110 +20,9 @@ typedef NS_OPTIONS(NSUInteger, UIToolsButtonLayoutType) {
     UIToolsButtonLayoutType_VerticalReversal    // 竖直反转
 };
 
-/**
- * 动画类型定义
- */
-typedef NS_OPTIONS(NSUInteger, UIToolsAnimationType) {
-    UIToolsAnimationType_Move, // 移动
-    UIToolsAnimationType_Rotation   // 旋转
-};
-
 @interface MCUITools : NSObject
 
-#pragma mark- 类方法
-/**
- * 颜色字符串转换成UIColor
- */
-+ (UIColor *)colorWithHexString:(NSString *)color alpha:(CGFloat)alpha;
-
-/**
- * 计算字符串Size
- */
-+ (CGSize)sizeWithString:(NSString *)str font:(UIFont *)font constrainedToSize:(CGSize)size;
-
-/**
- * 指定一个UIColor转换成UIImage
- */
-+ (UIImage *)createImageWithColor:(UIColor *)color size:(CGSize)size;
-
-/**
- * 指定一个UIView转换成UIImage
- */
-+ (UIImage *)convertViewToImage:(UIView *)view;
-
-/**
- * UIView切任意圆角
- */
-+ (void)bezierPathWithRoundedView:(UIView *)view byRoundingCorners:(UIRectCorner)corners cornerRadii:(CGSize)cornerRadii;
-
-/**
- * 图片切圆角
- * radius：圆角大小
- * image：原始图片
- */
-+ (UIImage *)imageWithCornerRadius:(CGFloat)radius image:(UIImage *)image;
-
-/**
- * 图片裁剪
- */
-+ (UIImage *)imageTrimWithSize:(CGSize)size image:(UIImage *)image;
-
-/**
- * 按UIImage中心拉伸图片
- */
-+ (UIImage *)resizeImage:(UIImage *)image;
-
-/**
- * 设置view的阴影
- * offset：阴影偏移，x>0 right，x<0 left，y>0 bottom，y<0 top
- * opacity：不透明度
- * radius：半径
- */
-+ (void)shadowOfView:(UIView *)view color:(UIColor *)color offset:(CGSize)offset opacity:(float)opacity radius:(float)radius;
-
-/**
- * 时间字符串转NSDate
- */
-+ (NSDate *)strToDate:(NSString*)strDate byFormat:(NSString *)formatStr byTimeZone:(NSTimeZone*)timeZone;
-
-/**
- * NSDate转时间字符串
- */
-+ (NSString *)dateToStr:(NSDate *)date byFormat:(NSString *)formatStr byTimeZone:(NSTimeZone*)timeZone;
-
-/**
-* 时间戳转时间
-*/
-+ (NSDate *)timeStampToTime:(NSInteger)timeStamp;
-
-/**
-* 时间转时间戳
-*/
-+ (NSInteger)timeToTimeStamp:(NSDate *)time;
-
-/**
- * CATransition动画
- * type:动作（kCATransitionPush）
- * subtype:方向（kCATransitionFromRight）
- * view:执行动画的view
- * duration:动画时长
- */
-+ (void)transitionWithType:(NSString *)type withSubtype:(NSString *)subtype forView:(UIView *)view duration:(CGFloat)duration;
-
-/**
- * UIView动画
- */
-+ (void)animateWithView:(UIView *)view duration:(NSTimeInterval)duration value:(CGFloat)value type:(UIToolsAnimationType)type complete:(void(^)(void))completeBlock;
-
-/**
- * 改变按钮的内部布局
- */
-+ (void)changeButtonLayoutTypeTo:(UIToolsButtonLayoutType)type button:(UIButton *)button spacing:(CGFloat)spacing;
-
-/**
- * 平滑退出APP
-*/
-+ (void)exitApplication;
+#pragma mark - 数据转换
 
 /**
  * 16进制转NSData
@@ -177,6 +76,72 @@ typedef NS_OPTIONS(NSUInteger, UIToolsAnimationType) {
  * 按位转换，前面带补0
  */
 + (NSData *)longValueToData:(long)value;
+
+#pragma mark - 时间转换
+
+/**
+ * 时间字符串转NSDate
+ */
++ (NSDate *)strToDate:(NSString*)strDate byFormat:(NSString *)formatStr byTimeZone:(NSTimeZone*)timeZone;
+
+/**
+ * NSDate转时间字符串
+ */
++ (NSString *)dateToStr:(NSDate *)date byFormat:(NSString *)formatStr byTimeZone:(NSTimeZone*)timeZone;
+
+/**
+* 时间戳转时间
+*/
++ (NSDate *)timeStampToTime:(NSInteger)timeStamp;
+
+/**
+* 时间转时间戳
+*/
++ (NSInteger)timeToTimeStamp:(NSDate *)time;
+
+#pragma mark - Image
+
+/**
+ * 颜色字符串转换成UIColor
+ */
++ (UIColor *)colorWithHexString:(NSString *)color alpha:(CGFloat)alpha;
+
+/**
+ * 计算字符串Size
+ */
++ (CGSize)sizeWithString:(NSString *)str font:(UIFont *)font constrainedToSize:(CGSize)size;
+
+/**
+ * 指定一个UIColor转换成UIImage
+ */
++ (UIImage *)createImageWithColor:(UIColor *)color size:(CGSize)size;
+
+/**
+ * 图片切圆角
+ * radius：圆角大小
+ * image：原始图片
+ */
++ (UIImage *)imageWithCornerRadius:(CGFloat)radius image:(UIImage *)image;
+
+/**
+ * 图片裁剪
+ */
++ (UIImage *)imageTrimWithSize:(CGSize)size image:(UIImage *)image;
+
+/**
+ * 按UIImage中心拉伸图片
+ */
++ (UIImage *)resizeImage:(UIImage *)image;
+
+/**
+ * 改变按钮的内部布局
+ */
++ (void)changeButtonLayoutTypeTo:(UIToolsButtonLayoutType)type button:(UIButton *)button spacing:(CGFloat)spacing;
+
+/**
+ * 平滑退出APP
+*/
++ (void)exitApplication;
 
 /**
  * 启动倒计时

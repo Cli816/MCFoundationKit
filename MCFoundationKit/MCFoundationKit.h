@@ -16,3 +16,4 @@
 #import <MCFoundationKit/MCCollectionManager.h>
 #import <MCFoundationKit/NSString+MCFoundation.h>
 #import <MCFoundationKit/MCAudioManager.h>
+#import <MCFoundationKit/UIView+MCFoundation.h>

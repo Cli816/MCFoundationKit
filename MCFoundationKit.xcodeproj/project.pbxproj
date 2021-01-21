@@ -12,6 +12,8 @@
 		730509A42440574700DB78A5 /* MCUserDefaultsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 730509A22440574700DB78A5 /* MCUserDefaultsManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		730509A52440574700DB78A5 /* MCUserDefaultsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 730509A32440574700DB78A5 /* MCUserDefaultsManager.m */; };
 		730509A724405A9B00DB78A5 /* MCCommonDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 730509A624405A8F00DB78A5 /* MCCommonDefine.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7307E96925B9283000D6D40E /* UIView+MCFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7307E96725B9283000D6D40E /* UIView+MCFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7307E96A25B9283000D6D40E /* UIView+MCFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7307E96825B9283000D6D40E /* UIView+MCFoundation.m */; };
 		7338F1F724D15F3D00B3A103 /* MCRSA.h in Headers */ = {isa = PBXBuildFile; fileRef = 7338F1F524D15F3D00B3A103 /* MCRSA.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7338F1F824D15F3D00B3A103 /* MCRSA.m in Sources */ = {isa = PBXBuildFile; fileRef = 7338F1F624D15F3D00B3A103 /* MCRSA.m */; };
 		733E551422817E190043D826 /* MCModalDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 733E551222817E190043D826 /* MCModalDialog.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -35,6 +37,8 @@
 		730509A22440574700DB78A5 /* MCUserDefaultsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCUserDefaultsManager.h; sourceTree = "<group>"; };
 		730509A32440574700DB78A5 /* MCUserDefaultsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MCUserDefaultsManager.m; sourceTree = "<group>"; };
 		730509A624405A8F00DB78A5 /* MCCommonDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCCommonDefine.h; sourceTree = "<group>"; };
+		7307E96725B9283000D6D40E /* UIView+MCFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+MCFoundation.h"; sourceTree = "<group>"; };
+		7307E96825B9283000D6D40E /* UIView+MCFoundation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+MCFoundation.m"; sourceTree = "<group>"; };
 		7338F1F524D15F3D00B3A103 /* MCRSA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCRSA.h; sourceTree = "<group>"; };
 		7338F1F624D15F3D00B3A103 /* MCRSA.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MCRSA.m; sourceTree = "<group>"; };
 		733E551222817E190043D826 /* MCModalDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCModalDialog.h; sourceTree = "<group>"; };
@@ -83,6 +87,15 @@
 			path = MCUserDefaultsManager;
 			sourceTree = "<group>";
 		};
+		7307E96625B9280100D6D40E /* UIView+MCFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				7307E96725B9283000D6D40E /* UIView+MCFoundation.h */,
+				7307E96825B9283000D6D40E /* UIView+MCFoundation.m */,
+			);
+			path = "UIView+MCFoundation";
+			sourceTree = "<group>";
+		};
 		7338F1F424D15F2600B3A103 /* MCRSA */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +142,7 @@
 		736BF669225ED33C0091DC06 /* MCFoundationKit */ = {
 			isa = PBXGroup;
 			children = (
+				7307E96625B9280100D6D40E /* UIView+MCFoundation */,
 				73A4B0FE2553ABE000A30995 /* MCAudio */,
 				7340D7B52519938F009D7677 /* NSString+MCFoundation */,
 				7399902B250623F700DA2720 /* MCCollectionManager */,
@@ -198,6 +212,7 @@
 				733E551422817E190043D826 /* MCModalDialog.h in Headers */,
 				73711F5B24A0AA2D00B32CFB /* MCBitSet.h in Headers */,
 				736BF66C225ED33C0091DC06 /* MCFoundationKit.h in Headers */,
+				7307E96925B9283000D6D40E /* UIView+MCFoundation.h in Headers */,
 				7340D7B8251993C5009D7677 /* NSString+MCFoundation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,7 +244,7 @@
 		736BF65E225ED33C0091DC06 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = "王茂";
 				TargetAttributes = {
 					736BF666225ED33C0091DC06 = {
@@ -275,6 +290,7 @@
 				730509A52440574700DB78A5 /* MCUserDefaultsManager.m in Sources */,
 				736BF678225ED41C0091DC06 /* MCUITools.m in Sources */,
 				733E551522817E190043D826 /* MCModalDialog.m in Sources */,
+				7307E96A25B9283000D6D40E /* UIView+MCFoundation.m in Sources */,
 				7340D7B9251993C5009D7677 /* NSString+MCFoundation.m in Sources */,
 				73711F5C24A0AA2D00B32CFB /* MCBitSet.m in Sources */,
 				730509A02440511A00DB78A5 /* MCFileManager.m in Sources */,
@@ -311,6 +327,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -373,6 +390,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -422,7 +440,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mc.MCFoundationKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -450,7 +468,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mc.MCFoundationKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

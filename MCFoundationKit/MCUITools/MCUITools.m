@@ -12,395 +12,7 @@
 
 @implementation MCUITools
 
-#pragma mark- 线程安全的单例模式
-static MCUITools *_instance = nil;
-
-+ (instancetype)shareInstance
-{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _instance = [[super allocWithZone:NULL] init];
-    });
-    
-    return _instance;
-}
-
-+ (id)allocWithZone:(struct _NSZone *)zone
-{
-    return [MCUITools shareInstance];
-}
-
-- (id)copyWithZone:(struct _NSZone *)zone
-{
-    return [MCUITools shareInstance];
-}
-
-#pragma mark- 类方法
-+ (UIColor *)colorWithHexString:(NSString *)color alpha:(CGFloat)alpha
-{
-    //删除字符串中的空格
-    NSString *cString = [[color stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
-    // String should be 6 or 8 characters
-    if ([cString length] < 6)
-    {
-        return [UIColor clearColor];
-    }
-    // strip 0X if it appears
-    //如果是0x开头的，那么截取字符串，字符串从索引为2的位置开始，一直到末尾
-    if ([cString hasPrefix:@"0X"])
-    {
-        cString = [cString substringFromIndex:2];
-    }
-    //如果是#开头的，那么截取字符串，字符串从索引为1的位置开始，一直到末尾
-    if ([cString hasPrefix:@"#"])
-    {
-        cString = [cString substringFromIndex:1];
-    }
-    if ([cString length] != 6)
-    {
-        return [UIColor clearColor];
-    }
-    
-    // Separate into r, g, b substrings
-    NSRange range;
-    range.location = 0;
-    range.length = 2;
-    //r
-    NSString *rString = [cString substringWithRange:range];
-    //g
-    range.location = 2;
-    NSString *gString = [cString substringWithRange:range];
-    //b
-    range.location = 4;
-    NSString *bString = [cString substringWithRange:range];
-    
-    // Scan values
-    unsigned int r, g, b;
-    [[NSScanner scannerWithString:rString] scanHexInt:&r];
-    [[NSScanner scannerWithString:gString] scanHexInt:&g];
-    [[NSScanner scannerWithString:bString] scanHexInt:&b];
-    return [UIColor colorWithRed:((float)r / 255.0f) green:((float)g / 255.0f) blue:((float)b / 255.0f) alpha:alpha];
-}
-
-+ (CGSize)sizeWithString:(NSString *)str font:(UIFont *)font constrainedToSize:(CGSize)size
-{
-    CGSize resultSize = CGSizeZero;
-    if(str.length >0){
-        if ([str respondsToSelector:@selector(sizeWithAttributes:)]) {
-            NSMutableDictionary *atts = [[NSMutableDictionary alloc] init];
-            [atts setObject:font forKey:NSFontAttributeName];
-            NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:str attributes:atts];
-            CGRect rect = [attributedText boundingRectWithSize:(CGSize){size.width, size.height}
-                                                       options:NSStringDrawingUsesLineFragmentOrigin
-                                                       context:nil];
-            resultSize = rect.size;
-        } else {
-            resultSize = [str boundingRectWithSize:CGSizeMake(size.width, size.height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size;
-        }
-    }
-    resultSize = CGSizeMake(resultSize.width + 1.f, resultSize.height + 1.f);
-    return resultSize;
-}
-
-+ (UIImage *)createImageWithColor:(UIColor *)color size:(CGSize)size
-{
-    UIImage *theImage = nil;
-    
-    CGRect rect = CGRectMake(0.f, 0.f, size.width, size.height);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
-    theImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return theImage;
-}
-
-+ (UIImage *)convertViewToImage:(UIView *)view {
-    CGSize s = view.bounds.size;
-    /*
-     第一个参数表示区域大小。第二个参数表示是否是非透明的。
-     如果需要显示半透明效果，需要传NO，否则传YES。第三个参数就是屏幕密度了
-     */
-    UIGraphicsBeginImageContextWithOptions(s, NO, [UIScreen mainScreen].scale);
-    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
-}
-
-+ (void)bezierPathWithRoundedView:(UIView *)view byRoundingCorners:(UIRectCorner)corners cornerRadii:(CGSize)cornerRadii
-{
-    CGRect mRect = view.bounds;
-    
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:mRect byRoundingCorners:corners cornerRadii:cornerRadii];
-    
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    maskLayer.frame = mRect;
-    maskLayer.path = maskPath.CGPath;
-    view.layer.mask = maskLayer;
-}
-
-+ (UIImage *)imageWithCornerRadius:(CGFloat)radius image:(UIImage *)image
-{
-    UIImage *mImage = nil;
-    
-    CGRect rect = CGRectMake(0.f, 0.f, image.size.width, image.size.height);
-    UIGraphicsBeginImageContextWithOptions(rect.size, NO, [UIScreen mainScreen].scale);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:radius];
-    CGContextAddPath(context, path.CGPath);
-    CGContextClip(context);
-    [image drawInRect:rect];
-    CGContextDrawPath(context, kCGPathFillStroke);
-    mImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return mImage;
-}
-
-+ (UIImage *)imageTrimWithSize:(CGSize)size image:(UIImage *)image {
-    UIImage *mImage = nil;
-    
-    CGRect rect = CGRectMake(0.f, 0.f, size.width, size.height);
-    UIGraphicsBeginImageContextWithOptions(rect.size, NO, [UIScreen mainScreen].scale);
-    [image drawInRect:rect];
-    mImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return mImage;
-}
-
-+ (UIImage *)resizeImage:(UIImage *)image
-{
-    UIImage *resizeImg = image;
-    
-    resizeImg = [resizeImg resizableImageWithCapInsets:UIEdgeInsetsMake(resizeImg.size.height / 2.f, resizeImg.size.width / 2.f, resizeImg.size.height / 2.f, resizeImg.size.width / 2.f) resizingMode:UIImageResizingModeStretch];
-    
-    return resizeImg;
-}
-
-+ (void)shadowOfView:(UIView *)view color:(UIColor *)color offset:(CGSize)offset opacity:(float)opacity radius:(float)radius
-{
-    view.layer.shadowColor = color.CGColor;
-    view.layer.shadowOffset = offset;
-    view.layer.shadowOpacity = opacity;
-    view.layer.shadowRadius = radius;
-}
-
-+ (NSDate *)strToDate:(NSString*)strDate byFormat:(NSString *)formatStr byTimeZone:(NSTimeZone*)timeZone
-{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-    
-    NSDate *retDate = nil;
-    if (strDate.length > 0) {
-        if (timeZone != nil) {
-            [dateFormatter setTimeZone:timeZone];
-        }else{
-            [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-        }
-        
-        if (formatStr.length > 0) {
-            [dateFormatter setDateFormat:formatStr];
-        }
-        retDate = [dateFormatter dateFromString:strDate];
-    }
-    return retDate;
-}
-
-+ (NSString *)dateToStr:(NSDate *)date byFormat:(NSString *)formatStr byTimeZone:(NSTimeZone*)timeZone
-{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-    
-    NSString *retStrDate = nil;
-    if (date != nil) {
-        if (timeZone != nil) {
-            [dateFormatter setTimeZone:timeZone];
-        }else{
-            [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-        }
-        if (formatStr.length > 0) {
-            [dateFormatter setDateFormat:formatStr];
-        }
-        retStrDate = [dateFormatter stringFromDate:date];
-    }
-    return retStrDate;
-}
-
-+ (NSDate *)timeStampToTime:(NSInteger)timeStamp
-{
-    NSDate *retDate = [NSDate dateWithTimeIntervalSince1970:timeStamp];
-    return retDate;
-}
-
-+ (NSInteger)timeToTimeStamp:(NSDate *)time
-{
-    NSInteger retTimeInteger = [time timeIntervalSince1970];
-    return retTimeInteger;
-}
-
-+ (void)transitionWithType:(NSString *)type withSubtype:(NSString *)subtype forView:(UIView *)view duration:(CGFloat)duration
-{
-    //创建CATransition对象
-    CATransition *animation = [CATransition animation];
-    //设置运动时间
-    animation.duration = duration;
-    //设置运动type
-    animation.type = type;
-    if (subtype != nil) {
-        //设置子类
-        animation.subtype = subtype;
-    }
-    //设置运动速度
-    CAMediaTimingFunction *fn = [CAMediaTimingFunction functionWithName: kCAMediaTimingFunctionEaseInEaseOut];
-    animation.timingFunction = fn;
-    [view.layer addAnimation:animation forKey:@"animation"];
-}
-
-+ (void)animateWithView:(UIView *)view duration:(NSTimeInterval)duration value:(CGFloat)value type:(UIToolsAnimationType)type complete:(void(^)(void))completeBlock
-{
-    switch (type) {
-        case UIToolsAnimationType_Move:
-        {
-            [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-                CGRect frame = view.frame;
-                frame.origin.x = frame.origin.x + value;
-                view.frame = frame;
-            } completion:^(BOOL finished) {
-                if (finished) {
-                    completeBlock();
-                }
-            }];
-        }
-            break;
-        case UIToolsAnimationType_Rotation:
-        {
-            CGAffineTransform endAngle = CGAffineTransformMakeRotation(value * (M_PI / 180));
-            [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-                view.transform = endAngle;
-            } completion:^(BOOL finished) {
-                if (finished) {
-                    completeBlock();
-                }
-            }];
-        }
-            break;
-            
-        default:
-            break;
-    }
-}
-
-+ (void)changeButtonLayoutTypeTo:(UIToolsButtonLayoutType)type button:(UIButton *)button spacing:(CGFloat)spacing
-{
-    CGFloat buttonImageW = button.imageView.frame.size.width;
-    CGFloat buttonImageH = button.imageView.frame.size.height;
-    CGFloat buttonTitleW = button.titleLabel.frame.size.width;
-    CGFloat buttonTitleH = button.titleLabel.frame.size.height;
-    CGFloat buttonSpacing = spacing;
-    
-    switch (type) {
-        case UIToolsButtonLayoutType_Vertical:
-        {
-            button.titleEdgeInsets = (UIEdgeInsets) {
-                .top = buttonImageH / 2 + buttonSpacing / 2,
-                .left = - (buttonImageW / 2),
-                .bottom = - (buttonImageH / 2 + buttonSpacing / 2),
-                .right = buttonImageW / 2
-            };
-            
-            button.imageEdgeInsets = (UIEdgeInsets) {
-                .top = - (buttonTitleH / 2 + buttonSpacing / 2),
-                .left = buttonTitleW / 2,
-                .bottom = buttonTitleH / 2 + buttonSpacing / 2,
-                .right = - (buttonTitleW / 2)
-            };
-        }
-            break;
-        case UIToolsButtonLayoutType_Horizontal:
-        {
-            button.titleEdgeInsets = (UIEdgeInsets) {
-                .top = 0,
-                .left = buttonSpacing / 2,
-                .bottom = 0,
-                .right = - buttonSpacing / 2
-            };
-                
-            button.imageEdgeInsets = (UIEdgeInsets) {
-                .top = 0,
-                .left = - buttonSpacing / 2,
-                .bottom = 0,
-                .right = buttonSpacing / 2
-            };
-        }
-            break;
-        case UIToolsButtonLayoutType_Cover:
-        {
-            button.titleEdgeInsets = (UIEdgeInsets) {
-                .top = 0,
-                .left = - (buttonImageW / 2),
-                .bottom = 0,
-                .right = buttonImageW / 2
-            };
-            
-            button.imageEdgeInsets = (UIEdgeInsets) {
-                .top = 0,
-                .left = buttonTitleW / 2,
-                .bottom = 0,
-                .right = - (buttonTitleW / 2)
-            };
-        }
-            break;
-        case UIToolsButtonLayoutType_Reversal:
-        {
-            button.titleEdgeInsets = (UIEdgeInsets) {
-                .top = 0,
-                .left = - (buttonImageW + buttonSpacing / 2),
-                .bottom = 0,
-                .right = (buttonImageW + buttonSpacing / 2)
-            };
-                
-            button.imageEdgeInsets = (UIEdgeInsets) {
-                .top = 0,
-                .left = (buttonTitleW + buttonSpacing / 2),
-                .bottom = 0,
-                .right = - (buttonTitleW + buttonSpacing / 2)
-            };
-        }
-            break;
-        case UIToolsButtonLayoutType_VerticalReversal:
-        {
-            button.titleEdgeInsets = (UIEdgeInsets) {
-                .top = - (buttonImageH / 2 + buttonSpacing / 2),
-                .left = - (buttonImageW / 2),
-                .bottom = buttonImageH / 2 + buttonSpacing / 2,
-                .right = buttonImageW / 2
-            };
-            
-            button.imageEdgeInsets = (UIEdgeInsets) {
-                .top = buttonTitleH / 2 + buttonSpacing / 2,
-                .left = buttonTitleW / 2,
-                .bottom = - (buttonTitleH / 2 + buttonSpacing / 2),
-                .right = - (buttonTitleW / 2)
-            };
-        }
-            break;
-            
-        default:
-            break;
-    }
-}
-
-+ (void)exitApplication
-{
-    [[UIApplication sharedApplication] performSelector:@selector(suspend)];
-    [self dispatchAfterLittleOnMainQueue:^{
-        exit(1);
-    }];
-}
+#pragma mark - 数据转换
 
 + (NSData *)convertHexStrToData:(NSString *)str
 {
@@ -564,6 +176,291 @@ static MCUITools *_instance = nil;
     
     NSData *data = [NSData dataWithBytes:byte length:sizeof(byte)];
     return data;
+}
+
+#pragma mark - 时间转换
+
++ (NSDate *)strToDate:(NSString*)strDate byFormat:(NSString *)formatStr byTimeZone:(NSTimeZone*)timeZone
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    
+    NSDate *retDate = nil;
+    if (strDate.length > 0) {
+        if (timeZone != nil) {
+            [dateFormatter setTimeZone:timeZone];
+        }else{
+            [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+        }
+        
+        if (formatStr.length > 0) {
+            [dateFormatter setDateFormat:formatStr];
+        }
+        retDate = [dateFormatter dateFromString:strDate];
+    }
+    return retDate;
+}
+
++ (NSString *)dateToStr:(NSDate *)date byFormat:(NSString *)formatStr byTimeZone:(NSTimeZone*)timeZone
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    
+    NSString *retStrDate = nil;
+    if (date != nil) {
+        if (timeZone != nil) {
+            [dateFormatter setTimeZone:timeZone];
+        }else{
+            [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+        }
+        if (formatStr.length > 0) {
+            [dateFormatter setDateFormat:formatStr];
+        }
+        retStrDate = [dateFormatter stringFromDate:date];
+    }
+    return retStrDate;
+}
+
++ (NSDate *)timeStampToTime:(NSInteger)timeStamp
+{
+    NSDate *retDate = [NSDate dateWithTimeIntervalSince1970:timeStamp];
+    return retDate;
+}
+
++ (NSInteger)timeToTimeStamp:(NSDate *)time
+{
+    NSInteger retTimeInteger = [time timeIntervalSince1970];
+    return retTimeInteger;
+}
+
+#pragma mark - Image
+
++ (UIColor *)colorWithHexString:(NSString *)color alpha:(CGFloat)alpha
+{
+    //删除字符串中的空格
+    NSString *cString = [[color stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
+    // String should be 6 or 8 characters
+    if ([cString length] < 6)
+    {
+        return [UIColor clearColor];
+    }
+    // strip 0X if it appears
+    //如果是0x开头的，那么截取字符串，字符串从索引为2的位置开始，一直到末尾
+    if ([cString hasPrefix:@"0X"])
+    {
+        cString = [cString substringFromIndex:2];
+    }
+    //如果是#开头的，那么截取字符串，字符串从索引为1的位置开始，一直到末尾
+    if ([cString hasPrefix:@"#"])
+    {
+        cString = [cString substringFromIndex:1];
+    }
+    if ([cString length] != 6)
+    {
+        return [UIColor clearColor];
+    }
+    
+    // Separate into r, g, b substrings
+    NSRange range;
+    range.location = 0;
+    range.length = 2;
+    //r
+    NSString *rString = [cString substringWithRange:range];
+    //g
+    range.location = 2;
+    NSString *gString = [cString substringWithRange:range];
+    //b
+    range.location = 4;
+    NSString *bString = [cString substringWithRange:range];
+    
+    // Scan values
+    unsigned int r, g, b;
+    [[NSScanner scannerWithString:rString] scanHexInt:&r];
+    [[NSScanner scannerWithString:gString] scanHexInt:&g];
+    [[NSScanner scannerWithString:bString] scanHexInt:&b];
+    return [UIColor colorWithRed:((float)r / 255.0f) green:((float)g / 255.0f) blue:((float)b / 255.0f) alpha:alpha];
+}
+
++ (CGSize)sizeWithString:(NSString *)str font:(UIFont *)font constrainedToSize:(CGSize)size
+{
+    CGSize resultSize = CGSizeZero;
+    if(str.length >0){
+        if ([str respondsToSelector:@selector(sizeWithAttributes:)]) {
+            NSMutableDictionary *atts = [[NSMutableDictionary alloc] init];
+            [atts setObject:font forKey:NSFontAttributeName];
+            NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:str attributes:atts];
+            CGRect rect = [attributedText boundingRectWithSize:(CGSize){size.width, size.height}
+                                                       options:NSStringDrawingUsesLineFragmentOrigin
+                                                       context:nil];
+            resultSize = rect.size;
+        } else {
+            resultSize = [str boundingRectWithSize:CGSizeMake(size.width, size.height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size;
+        }
+    }
+    resultSize = CGSizeMake(resultSize.width + 1.f, resultSize.height + 1.f);
+    return resultSize;
+}
+
++ (UIImage *)createImageWithColor:(UIColor *)color size:(CGSize)size
+{
+    UIImage *theImage = nil;
+    
+    CGRect rect = CGRectMake(0.f, 0.f, size.width, size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    theImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return theImage;
+}
+
++ (UIImage *)imageWithCornerRadius:(CGFloat)radius image:(UIImage *)image
+{
+    UIImage *mImage = nil;
+    
+    CGRect rect = CGRectMake(0.f, 0.f, image.size.width, image.size.height);
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, [UIScreen mainScreen].scale);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:radius];
+    CGContextAddPath(context, path.CGPath);
+    CGContextClip(context);
+    [image drawInRect:rect];
+    CGContextDrawPath(context, kCGPathFillStroke);
+    mImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return mImage;
+}
+
++ (UIImage *)imageTrimWithSize:(CGSize)size image:(UIImage *)image {
+    UIImage *mImage = nil;
+    
+    CGRect rect = CGRectMake(0.f, 0.f, size.width, size.height);
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, [UIScreen mainScreen].scale);
+    [image drawInRect:rect];
+    mImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return mImage;
+}
+
++ (UIImage *)resizeImage:(UIImage *)image
+{
+    UIImage *resizeImg = image;
+    
+    resizeImg = [resizeImg resizableImageWithCapInsets:UIEdgeInsetsMake(resizeImg.size.height / 2.f, resizeImg.size.width / 2.f, resizeImg.size.height / 2.f, resizeImg.size.width / 2.f) resizingMode:UIImageResizingModeStretch];
+    
+    return resizeImg;
+}
+
++ (void)changeButtonLayoutTypeTo:(UIToolsButtonLayoutType)type button:(UIButton *)button spacing:(CGFloat)spacing
+{
+    CGFloat buttonImageW = button.imageView.frame.size.width;
+    CGFloat buttonImageH = button.imageView.frame.size.height;
+    CGFloat buttonTitleW = button.titleLabel.frame.size.width;
+    CGFloat buttonTitleH = button.titleLabel.frame.size.height;
+    CGFloat buttonSpacing = spacing;
+    
+    switch (type) {
+        case UIToolsButtonLayoutType_Vertical:
+        {
+            button.titleEdgeInsets = (UIEdgeInsets) {
+                .top = buttonImageH / 2 + buttonSpacing / 2,
+                .left = - (buttonImageW / 2),
+                .bottom = - (buttonImageH / 2 + buttonSpacing / 2),
+                .right = buttonImageW / 2
+            };
+            
+            button.imageEdgeInsets = (UIEdgeInsets) {
+                .top = - (buttonTitleH / 2 + buttonSpacing / 2),
+                .left = buttonTitleW / 2,
+                .bottom = buttonTitleH / 2 + buttonSpacing / 2,
+                .right = - (buttonTitleW / 2)
+            };
+        }
+            break;
+        case UIToolsButtonLayoutType_Horizontal:
+        {
+            button.titleEdgeInsets = (UIEdgeInsets) {
+                .top = 0,
+                .left = buttonSpacing / 2,
+                .bottom = 0,
+                .right = - buttonSpacing / 2
+            };
+                
+            button.imageEdgeInsets = (UIEdgeInsets) {
+                .top = 0,
+                .left = - buttonSpacing / 2,
+                .bottom = 0,
+                .right = buttonSpacing / 2
+            };
+        }
+            break;
+        case UIToolsButtonLayoutType_Cover:
+        {
+            button.titleEdgeInsets = (UIEdgeInsets) {
+                .top = 0,
+                .left = - (buttonImageW / 2),
+                .bottom = 0,
+                .right = buttonImageW / 2
+            };
+            
+            button.imageEdgeInsets = (UIEdgeInsets) {
+                .top = 0,
+                .left = buttonTitleW / 2,
+                .bottom = 0,
+                .right = - (buttonTitleW / 2)
+            };
+        }
+            break;
+        case UIToolsButtonLayoutType_Reversal:
+        {
+            button.titleEdgeInsets = (UIEdgeInsets) {
+                .top = 0,
+                .left = - (buttonImageW + buttonSpacing / 2),
+                .bottom = 0,
+                .right = (buttonImageW + buttonSpacing / 2)
+            };
+                
+            button.imageEdgeInsets = (UIEdgeInsets) {
+                .top = 0,
+                .left = (buttonTitleW + buttonSpacing / 2),
+                .bottom = 0,
+                .right = - (buttonTitleW + buttonSpacing / 2)
+            };
+        }
+            break;
+        case UIToolsButtonLayoutType_VerticalReversal:
+        {
+            button.titleEdgeInsets = (UIEdgeInsets) {
+                .top = - (buttonImageH / 2 + buttonSpacing / 2),
+                .left = - (buttonImageW / 2),
+                .bottom = buttonImageH / 2 + buttonSpacing / 2,
+                .right = buttonImageW / 2
+            };
+            
+            button.imageEdgeInsets = (UIEdgeInsets) {
+                .top = buttonTitleH / 2 + buttonSpacing / 2,
+                .left = buttonTitleW / 2,
+                .bottom = - (buttonTitleH / 2 + buttonSpacing / 2),
+                .right = - (buttonTitleW / 2)
+            };
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
++ (void)exitApplication
+{
+    [[UIApplication sharedApplication] performSelector:@selector(suspend)];
+    [self dispatchAfterLittleOnMainQueue:^{
+        exit(1);
+    }];
 }
 
 + (void)startCountdownTimer:(dispatch_source_t)timer timeInterval:(NSTimeInterval)timeInterval complete:(void(^)(void))completeBlock progress:(void(^)(int mSecond))progressBlock

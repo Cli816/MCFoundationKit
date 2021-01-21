@@ -40,7 +40,7 @@
 
 + (void)clearAllData
 {
-    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:kBundleIdentifier];
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:kMCBundleIdentifier];
 }
 
 @end
