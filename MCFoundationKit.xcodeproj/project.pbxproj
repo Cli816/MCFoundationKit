@@ -29,6 +29,8 @@
 		7399902F2506242200DA2720 /* MCCollectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7399902D2506242200DA2720 /* MCCollectionManager.m */; };
 		73A4B1012553ABFF00A30995 /* MCAudioManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 73A4B0FF2553ABFF00A30995 /* MCAudioManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		73A4B1022553ABFF00A30995 /* MCAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A4B1002553ABFF00A30995 /* MCAudioManager.m */; };
+		73C23CDC25CFD9B000AFCFF0 /* MCScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 73C23CDA25CFD9B000AFCFF0 /* MCScanner.h */; };
+		73C23CDD25CFD9B000AFCFF0 /* MCScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C23CDB25CFD9B000AFCFF0 /* MCScanner.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,8 @@
 		7399902D2506242200DA2720 /* MCCollectionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MCCollectionManager.m; sourceTree = "<group>"; };
 		73A4B0FF2553ABFF00A30995 /* MCAudioManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCAudioManager.h; sourceTree = "<group>"; };
 		73A4B1002553ABFF00A30995 /* MCAudioManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MCAudioManager.m; sourceTree = "<group>"; };
+		73C23CDA25CFD9B000AFCFF0 /* MCScanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCScanner.h; sourceTree = "<group>"; };
+		73C23CDB25CFD9B000AFCFF0 /* MCScanner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MCScanner.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +146,7 @@
 		736BF669225ED33C0091DC06 /* MCFoundationKit */ = {
 			isa = PBXGroup;
 			children = (
+				73C23CD925CFD8FB00AFCFF0 /* MCScanner */,
 				7307E96625B9280100D6D40E /* UIView+MCFoundation */,
 				73A4B0FE2553ABE000A30995 /* MCAudio */,
 				7340D7B52519938F009D7677 /* NSString+MCFoundation */,
@@ -195,6 +200,15 @@
 			path = MCAudio;
 			sourceTree = "<group>";
 		};
+		73C23CD925CFD8FB00AFCFF0 /* MCScanner */ = {
+			isa = PBXGroup;
+			children = (
+				73C23CDA25CFD9B000AFCFF0 /* MCScanner.h */,
+				73C23CDB25CFD9B000AFCFF0 /* MCScanner.m */,
+			);
+			path = MCScanner;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -213,6 +227,7 @@
 				73711F5B24A0AA2D00B32CFB /* MCBitSet.h in Headers */,
 				736BF66C225ED33C0091DC06 /* MCFoundationKit.h in Headers */,
 				7307E96925B9283000D6D40E /* UIView+MCFoundation.h in Headers */,
+				73C23CDC25CFD9B000AFCFF0 /* MCScanner.h in Headers */,
 				7340D7B8251993C5009D7677 /* NSString+MCFoundation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +309,7 @@
 				7340D7B9251993C5009D7677 /* NSString+MCFoundation.m in Sources */,
 				73711F5C24A0AA2D00B32CFB /* MCBitSet.m in Sources */,
 				730509A02440511A00DB78A5 /* MCFileManager.m in Sources */,
+				73C23CDD25CFD9B000AFCFF0 /* MCScanner.m in Sources */,
 				7399902F2506242200DA2720 /* MCCollectionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,7 +456,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mc.MCFoundationKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -468,7 +484,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mc.MCFoundationKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
