@@ -57,13 +57,9 @@
 
 - (void)handleScanResult:(NSString *)result {
     NSLog(@"handleScanResult: %@", result);
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self dismissViewControllerAnimated:YES completion:^{
-            if ([self.delegate respondsToSelector:@selector(handleScanResult:)]) {
-                [self.delegate handleScanResult:result];
-            }
-        }];
-    });
+    if ([self.delegate respondsToSelector:@selector(handleScanResult:)]) {
+        [self.delegate handleScanResult:result];
+    }
 }
 
 @end

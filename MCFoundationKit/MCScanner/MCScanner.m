@@ -94,7 +94,7 @@ session = _session;
                         self->_layer = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
                         self->_layer.videoGravity = AVLayerVideoGravityResizeAspectFill;
                         self->_layer.frame = self.view.layer.bounds;
-                        [self.view.layer addSublayer:self->_layer];
+                        [self.view.layer insertSublayer:self->_layer atIndex:0];
                     }
                     [self.session startRunning];
                     if (complete) {

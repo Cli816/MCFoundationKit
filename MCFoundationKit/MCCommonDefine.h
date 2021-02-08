@@ -10,6 +10,7 @@
 #define MCCommonDefine_h
 
 #pragma mark - 项目信息
+
 /**
  * 获取项目名称
  */
@@ -34,5 +35,12 @@
  * 获取最终显示的DisplayName
  */
 #define kMCBundleFinalDisplayName [NSLocalizedStringFromTableInBundle(@"CFBundleDisplayName", @"InfoPlist", [NSBundle mainBundle], nil) isEqualToString:@"CFBundleDisplayName"] ? [[NSBundle mainBundle] infoDictionary][@"CFBundleDisplayName"] : NSLocalizedStringFromTableInBundle(@"CFBundleDisplayName", @"InfoPlist", [NSBundle mainBundle], nil)
+
+#pragma mark - UI
+
+/**
+ * 16进制字符串转颜色
+ */
+#define kMCColorFromRGBA(rgbValue, a) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
 
 #endif /* MCCommonDefine_h */
