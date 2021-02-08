@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "MCFoundationKit"
-  spec.version      = "1.0.3"
+  spec.version      = "1.0.4"
   spec.summary      = "自定义基础工具库."
 
   # This description is used to generate tags and improve search results.
@@ -40,6 +40,7 @@ Pod::Spec.new do |spec|
   												11.数据转换，16进制、10进制、2进制
   												12.图片转换
   												13.颜色转换
+                                                14.二维码扫描
   												等。
                    		DESC
 
