@@ -17,3 +17,5 @@
 #import <MCFoundationKit/NSString+MCFoundation.h>
 #import <MCFoundationKit/MCAudioManager.h>
 #import <MCFoundationKit/UIView+MCFoundation.h>
+#import <MCFoundationKit/MCScanner.h>
+#import <MCFoundationKit/MCScannerViewController.h>

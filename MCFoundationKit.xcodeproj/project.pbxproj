@@ -27,9 +27,11 @@
 		73711F5C24A0AA2D00B32CFB /* MCBitSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 73711F5A24A0AA2D00B32CFB /* MCBitSet.m */; };
 		7399902E2506242200DA2720 /* MCCollectionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 7399902C2506242200DA2720 /* MCCollectionManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7399902F2506242200DA2720 /* MCCollectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7399902D2506242200DA2720 /* MCCollectionManager.m */; };
+		73A4009725D0E1D900BF1E57 /* MCScannerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 73A4009525D0E1D900BF1E57 /* MCScannerViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		73A4009825D0E1D900BF1E57 /* MCScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A4009625D0E1D900BF1E57 /* MCScannerViewController.m */; };
 		73A4B1012553ABFF00A30995 /* MCAudioManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 73A4B0FF2553ABFF00A30995 /* MCAudioManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		73A4B1022553ABFF00A30995 /* MCAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A4B1002553ABFF00A30995 /* MCAudioManager.m */; };
-		73C23CDC25CFD9B000AFCFF0 /* MCScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 73C23CDA25CFD9B000AFCFF0 /* MCScanner.h */; };
+		73C23CDC25CFD9B000AFCFF0 /* MCScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 73C23CDA25CFD9B000AFCFF0 /* MCScanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		73C23CDD25CFD9B000AFCFF0 /* MCScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C23CDB25CFD9B000AFCFF0 /* MCScanner.m */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +58,8 @@
 		73711F5A24A0AA2D00B32CFB /* MCBitSet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MCBitSet.m; sourceTree = "<group>"; };
 		7399902C2506242200DA2720 /* MCCollectionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCCollectionManager.h; sourceTree = "<group>"; };
 		7399902D2506242200DA2720 /* MCCollectionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MCCollectionManager.m; sourceTree = "<group>"; };
+		73A4009525D0E1D900BF1E57 /* MCScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCScannerViewController.h; sourceTree = "<group>"; };
+		73A4009625D0E1D900BF1E57 /* MCScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCScannerViewController.m; sourceTree = "<group>"; };
 		73A4B0FF2553ABFF00A30995 /* MCAudioManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCAudioManager.h; sourceTree = "<group>"; };
 		73A4B1002553ABFF00A30995 /* MCAudioManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MCAudioManager.m; sourceTree = "<group>"; };
 		73C23CDA25CFD9B000AFCFF0 /* MCScanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCScanner.h; sourceTree = "<group>"; };
@@ -205,6 +209,8 @@
 			children = (
 				73C23CDA25CFD9B000AFCFF0 /* MCScanner.h */,
 				73C23CDB25CFD9B000AFCFF0 /* MCScanner.m */,
+				73A4009525D0E1D900BF1E57 /* MCScannerViewController.h */,
+				73A4009625D0E1D900BF1E57 /* MCScannerViewController.m */,
 			);
 			path = MCScanner;
 			sourceTree = "<group>";
@@ -216,6 +222,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73A4009725D0E1D900BF1E57 /* MCScannerViewController.h in Headers */,
 				730509A724405A9B00DB78A5 /* MCCommonDefine.h in Headers */,
 				730509A42440574700DB78A5 /* MCUserDefaultsManager.h in Headers */,
 				7399902E2506242200DA2720 /* MCCollectionManager.h in Headers */,
@@ -309,6 +316,7 @@
 				7340D7B9251993C5009D7677 /* NSString+MCFoundation.m in Sources */,
 				73711F5C24A0AA2D00B32CFB /* MCBitSet.m in Sources */,
 				730509A02440511A00DB78A5 /* MCFileManager.m in Sources */,
+				73A4009825D0E1D900BF1E57 /* MCScannerViewController.m in Sources */,
 				73C23CDD25CFD9B000AFCFF0 /* MCScanner.m in Sources */,
 				7399902F2506242200DA2720 /* MCCollectionManager.m in Sources */,
 			);

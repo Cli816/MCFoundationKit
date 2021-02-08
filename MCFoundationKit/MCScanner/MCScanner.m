@@ -17,10 +17,11 @@ session = _session;
     [self onDealloc];
 }
 
-- (instancetype)initWithView:(UIView *)view delegate:(id<MCScannerDelegate>)delegate {
+- (instancetype)initWithView:(UIView *)view delegate:(id<MCScannerDelegate>)delegate outputQueue:(dispatch_queue_t)outputQueue {
     if (self = [super init]) {
         _view = view;
         _delegate = delegate;
+        _outputQueue = outputQueue;
         
         [self onInit];
     }
@@ -35,6 +36,12 @@ session = _session;
 
 - (void)onDealloc {
     NSLog(@"[%@ onDealloc]", [self class]);
+    
+    _delegate = nil;
+    _outputQueue = nil;
+    _layer = nil;
+    _view = nil;
+    _session = nil;
 }
 
 #pragma mark - 懒加载
@@ -44,14 +51,18 @@ session = _session;
     if (device) {
         NSError *error;
         AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
-        if (!input) {
+        if (input) {
             if (!_session) {
                 _session = [[AVCaptureSession alloc] init];
                 _session.sessionPreset = AVCaptureSessionPresetHigh;
                 [_session addInput:input];
                 AVCaptureMetadataOutput *output = [[AVCaptureMetadataOutput alloc] init];
-                dispatch_queue_t outputQueue = dispatch_queue_create("com.mcqueue.AVCaptureMetadataOutput", DISPATCH_QUEUE_CONCURRENT);
-                [output setMetadataObjectsDelegate:self queue:outputQueue];
+                //必须先addOutput再设置output，否则availableMetadataObjectTypes会不存在异常
+                [_session addOutput:output];
+                if (!_outputQueue) {
+                    _outputQueue = dispatch_queue_create(kMCDefaultAVCaptureMetadataOutputQueue, DISPATCH_QUEUE_CONCURRENT);
+                }
+                [output setMetadataObjectsDelegate:self queue:self.outputQueue];
                 output.metadataObjectTypes = @[AVMetadataObjectTypeQRCode,
                                                AVMetadataObjectTypeEAN13Code,
                                                AVMetadataObjectTypeEAN8Code,
@@ -61,7 +72,6 @@ session = _session;
                                                AVMetadataObjectTypeCode93Code,
                                                AVMetadataObjectTypeCode128Code,
                                                AVMetadataObjectTypePDF417Code];
-                [_session addOutput:output];
             }
         } else {
             NSLog(@"[AVCaptureDeviceInput error: %@]", error.description);
@@ -76,50 +86,49 @@ session = _session;
 
 - (void)startScanning:(void (^)(BOOL))complete {
     [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
-        if (granted) {
-            if (self.session &&
-                self.view) {
-                if (!self->_layer) {
-                    self->_layer = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
-                    self->_layer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-                    self->_layer.frame = self.view.layer.bounds;
-                    [self.view.layer addSublayer:self->_layer];
-                }
-                [self.session startRunning];
-                if (complete) {
-                    complete(YES);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (granted) {
+                if (self.session &&
+                    self.view) {
+                    if (!self->_layer) {
+                        self->_layer = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
+                        self->_layer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+                        self->_layer.frame = self.view.layer.bounds;
+                        [self.view.layer addSublayer:self->_layer];
+                    }
+                    [self.session startRunning];
+                    if (complete) {
+                        complete(YES);
+                    }
+                } else {
+                    if (complete) {
+                        complete(NO);
+                    }
                 }
             } else {
                 if (complete) {
                     complete(NO);
                 }
             }
-        } else {
-            if (complete) {
-                complete(NO);
-            }
-        }
+        });
     }];
-}
-
-- (void)stopScanning {
-    [_session stopRunning];
-    _session = nil;
 }
 
 #pragma mark - AVCaptureMetadataOutputObjectsDelegate
 
 - (void)captureOutput:(AVCaptureOutput *)output didOutputMetadataObjects:(NSArray<__kindof AVMetadataObject *> *)metadataObjects fromConnection:(AVCaptureConnection *)connection {
-    if ([self.delegate respondsToSelector:@selector(mc_captureOutput:didOutputMetadataObjects:fromConnection:)]) {
-        [self.delegate mc_captureOutput:output didOutputMetadataObjects:metadataObjects fromConnection:connection];
-    }
-    if (_session) {
-        if (metadataObjects.count > 0) {
-            [self stopScanning];
-            AVMetadataMachineReadableCodeObject *metadataObject = [metadataObjects firstObject];
-            NSString *result = metadataObject.stringValue;
-            if ([self.delegate respondsToSelector:@selector(handleScanResult:)]) {
-                [self.delegate handleScanResult:result];
+    if ([_session isRunning]) {
+        if ([self.delegate respondsToSelector:@selector(mc_captureOutput:didOutputMetadataObjects:fromConnection:)]) {
+            [self.delegate mc_captureOutput:output didOutputMetadataObjects:metadataObjects fromConnection:connection];
+        } else {
+            if (metadataObjects.count > 0) {
+                [_session stopRunning];
+                
+                AVMetadataMachineReadableCodeObject *metadataObject = [metadataObjects firstObject];
+                NSString *result = metadataObject.stringValue;
+                if ([self.delegate respondsToSelector:@selector(handleScanResult:)]) {
+                    [self.delegate handleScanResult:result];
+                }
             }
         }
     }
