@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MCFoundationKit/NSString+MCFoundation.h>
 
 @interface MCBitSet : NSObject
 

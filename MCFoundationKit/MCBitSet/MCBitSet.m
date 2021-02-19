@@ -44,7 +44,7 @@
          */
     }
     if ([bitSetStr length] > 0) {
-        self.bitStr = [MCUITools convertHexStrToBinaryStr:bitSetStr];
+        self.bitStr = [bitSetStr convertHexStrToBinaryStr];
     }
     /*
     if ([bitSetData length] > 0) {

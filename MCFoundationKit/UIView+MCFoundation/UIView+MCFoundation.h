@@ -50,7 +50,7 @@ typedef NS_OPTIONS(NSUInteger, UIToolsAnimationType) {
 /**
  * UIView动画
  */
-- (void)animateWithType:(UIToolsAnimationType)type duration:(NSTimeInterval)duration value:(CGFloat)value complete:(void(^)(void))completeBlock;
+- (void)animateWithType:(UIToolsAnimationType)type duration:(NSTimeInterval)duration value:(CGFloat)value complete:(void(^ _Nullable)(void))completeBlock;
 
 @end
 

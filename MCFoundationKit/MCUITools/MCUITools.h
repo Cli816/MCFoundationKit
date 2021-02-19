@@ -9,62 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-/**
- * 按钮布局类型
- */
-typedef NS_OPTIONS(NSUInteger, UIToolsButtonLayoutType) {
-    UIToolsButtonLayoutType_Vertical,   // 竖直
-    UIToolsButtonLayoutType_Horizontal, // 水平
-    UIToolsButtonLayoutType_Cover,  // 覆盖
-    UIToolsButtonLayoutType_Reversal,    // 水平反转
-    UIToolsButtonLayoutType_VerticalReversal    // 竖直反转
-};
-
 @interface MCUITools : NSObject
 
-#pragma mark - 数据转换
-
-/**
- * 16进制转NSData
-*/
-+ (NSData *)convertHexStrToData:(NSString *)str;
-
-/**
- * 16进制转10进制
- */
-+ (NSInteger)convertHexStrToInt:(NSString *)str;
-
-/**
- * 16进制字符串转2进制字符串
- */
-+ (NSString *)convertHexStrToBinaryStr:(NSString *)hex;
-
-/**
- * NSData转16进制
- */
-+ (NSString *)convertDataToHexStr:(NSData *)data;
-
-/**
- * 转换NSData->16进制字符串
- * 如果存在\0，以\0为结束符
-*/
-+ (NSString *)convertDataToString:(NSData *)data;
-
-/**
- * 按位转换NSData->16进制字符串
- * 如果存在\0，以\0为结束符
-*/
-+ (NSString *)convertDataToStringPositional:(NSData *)data;
-
-/**
- * NSData转10进制
- */
-+ (NSInteger)convertDataToInt:(NSData *)data;
-
-/**
- * 按位转换NSData->10进制
-*/
-+ (NSInteger)convertDataToIntegerPositional:(NSData *)data;
+#pragma mark - 数据
 
 /**
  * 10进制转16进制
@@ -77,71 +24,20 @@ typedef NS_OPTIONS(NSUInteger, UIToolsButtonLayoutType) {
  */
 + (NSData *)longValueToData:(long)value;
 
-#pragma mark - 时间转换
-
 /**
- * 时间字符串转NSDate
+ * 获取一个随机整数，包含from，包含to
  */
-+ (NSDate *)strToDate:(NSString*)strDate byFormat:(NSString *)formatStr byTimeZone:(NSTimeZone*)timeZone;
++ (NSInteger)getRandomInteger:(NSInteger)from to:(NSInteger)to;
+
+#pragma mark - 字符串
 
 /**
- * NSDate转时间字符串
+ * 字符串路径拼接
+ * suffix -> 后缀名，例如"html"、"png"，可以为nil
  */
-+ (NSString *)dateToStr:(NSDate *)date byFormat:(NSString *)formatStr byTimeZone:(NSTimeZone*)timeZone;
++ (NSString *)stringPathWithSuffix:(NSString *)suffix components:(NSString *)components, ... NS_REQUIRES_NIL_TERMINATION;
 
-/**
-* 时间戳转时间
-*/
-+ (NSDate *)timeStampToTime:(NSInteger)timeStamp;
-
-/**
-* 时间转时间戳
-*/
-+ (NSInteger)timeToTimeStamp:(NSDate *)time;
-
-#pragma mark - Image
-
-/**
- * 颜色字符串转换成UIColor
- */
-+ (UIColor *)colorWithHexString:(NSString *)color alpha:(CGFloat)alpha;
-
-/**
- * 计算字符串Size
- */
-+ (CGSize)sizeWithString:(NSString *)str font:(UIFont *)font constrainedToSize:(CGSize)size;
-
-/**
- * 指定一个UIColor转换成UIImage
- */
-+ (UIImage *)createImageWithColor:(UIColor *)color size:(CGSize)size;
-
-/**
- * 图片切圆角
- * radius：圆角大小
- * image：原始图片
- */
-+ (UIImage *)imageWithCornerRadius:(CGFloat)radius image:(UIImage *)image;
-
-/**
- * 图片裁剪
- */
-+ (UIImage *)imageTrimWithSize:(CGSize)size image:(UIImage *)image;
-
-/**
- * 按UIImage中心拉伸图片
- */
-+ (UIImage *)resizeImage:(UIImage *)image;
-
-/**
- * 改变按钮的内部布局
- */
-+ (void)changeButtonLayoutTypeTo:(UIToolsButtonLayoutType)type button:(UIButton *)button spacing:(CGFloat)spacing;
-
-/**
- * 平滑退出APP
-*/
-+ (void)exitApplication;
+#pragma mark - 计时器
 
 /**
  * 启动倒计时
@@ -153,10 +49,12 @@ typedef NS_OPTIONS(NSUInteger, UIToolsButtonLayoutType) {
 */
 + (void)cancelCountdownTimer:(dispatch_source_t)timer;
 
+#pragma mark - 系统
+
 /**
- * 获取最上层window
- */
-+ (UIWindow *)topLevelWindow;
+ * 平滑退出APP
+*/
++ (void)exitApplication;
 
 /**
  * 获取手机型号
@@ -164,53 +62,20 @@ typedef NS_OPTIONS(NSUInteger, UIToolsButtonLayoutType) {
 + (NSString *)getCurrentDeviceModel;
 
 /**
- * 字符串路径拼接
- * suffix -> 后缀名，例如"html"、"png"，可以为nil
- */
-+ (NSString *)stringPathWithSuffix:(NSString *)suffix components:(NSString *)components, ... NS_REQUIRES_NIL_TERMINATION;
-
-/**
  * 获取当前系统语言
  */
 + (NSString *)getSystemLanguageCode;
 
-/**
- * 设置Label AttributedText
- */
-+ (void)setLabelAttributedTexts:(NSArray<NSString *> *)texts fonts:(NSArray<UIFont *> *)fonts colors:(NSArray<UIColor *> *)colors label:(UILabel *)label;
+#pragma mark - UI
 
 /**
- * 获取一个随机整数，包含from，包含to
+ * 获取最上层window
  */
-+ (NSInteger)getRandomInteger:(NSInteger)from to:(NSInteger)to;
-
-/**
- * 加载gif为图片
- */
-+ (UIImage *)gifImageWithData:(NSData *)data;
-
-/**
- * isStrictNum:严格数字检查，不能出现020，.2的情况
- * decimal:小数位数
- */
-+ (BOOL)isNumStr:(NSString*)str isStrictNum:(BOOL)isStrictNum decimal:(unsigned int)decimal maxValue:(NSNumber *)maxValue;
-
-/**
- * 输入检测
- * 需要监听[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldEditChanged:) name:@"UITextFieldTextDidChangeNotification" object:TextField];
- */
-+ (void)textInputCheck:(UITextField *)textField maxStrLength:(int)maxStrLength;
++ (UIWindow *)topLevelWindow;
 
 /**
  * 主线程微小的延迟，用作UI响应不及时的处理
  */
 + (void)dispatchAfterLittleOnMainQueue:(void(^)(void))completeBlock;
-
-/**
- * 二分法压缩图片(JPEG)
- * PNG压缩完会变成无透明图
- * toByte -> 指定大小(B)，1KB = 1024B
- */
-+ (NSData *)compressImageQuality:(UIImage *)image toByte:(NSInteger)maxLength;
 
 @end

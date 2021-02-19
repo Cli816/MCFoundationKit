@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface NSString (MCFoundation)
 
@@ -59,5 +60,42 @@
  * UTF8 Encode Url
  */
 - (NSURL *)MCEncodeUrl;
+
+/**
+ * 16进制转NSData
+*/
+- (NSData *)convertHexStrToData;
+
+/**
+ * 16进制转10进制
+ */
+- (NSInteger)convertHexStrToInt;
+
+/**
+ * 16进制字符串转2进制字符串
+ */
+- (NSString *)convertHexStrToBinaryStr;
+
+/**
+ * 时间字符串转NSDate
+ */
+- (NSDate *)strToDateByFormat:(NSString *)formatStr byTimeZone:(NSTimeZone *)timeZone;
+
+/**
+ * 颜色字符串转换成UIColor
+ */
+- (UIColor *)colorWithAlpha:(CGFloat)alpha;
+
+/**
+ * 计算字符串Size
+ */
+- (CGSize)sizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size;
+
+/**
+ * isStrictNum:严格数字检查，不能出现020，.2的情况
+ * decimal:小数位数
+ * maxValue: <=
+ */
+- (BOOL)checkNumByStrictNum:(BOOL)isStrictNum decimal:(unsigned int)decimal maxValue:(NSNumber *)maxValue;
 
 @end

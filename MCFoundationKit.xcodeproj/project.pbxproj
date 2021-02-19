@@ -33,6 +33,20 @@
 		73A4B1022553ABFF00A30995 /* MCAudioManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A4B1002553ABFF00A30995 /* MCAudioManager.m */; };
 		73C23CDC25CFD9B000AFCFF0 /* MCScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 73C23CDA25CFD9B000AFCFF0 /* MCScanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		73C23CDD25CFD9B000AFCFF0 /* MCScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 73C23CDB25CFD9B000AFCFF0 /* MCScanner.m */; };
+		73CB200A25DF8944008D7D53 /* NSData+MCFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 73CB200825DF8944008D7D53 /* NSData+MCFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		73CB200B25DF8944008D7D53 /* NSData+MCFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CB200925DF8944008D7D53 /* NSData+MCFoundation.m */; };
+		73CB201125DF9086008D7D53 /* NSDate+MCFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 73CB200F25DF9086008D7D53 /* NSDate+MCFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		73CB201225DF9086008D7D53 /* NSDate+MCFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CB201025DF9086008D7D53 /* NSDate+MCFoundation.m */; };
+		73CB201925DF90B2008D7D53 /* UIColor+MCFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 73CB201725DF90B2008D7D53 /* UIColor+MCFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		73CB201A25DF90B2008D7D53 /* UIColor+MCFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CB201825DF90B2008D7D53 /* UIColor+MCFoundation.m */; };
+		73CB202025DF90E9008D7D53 /* UIImage+MCFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 73CB201E25DF90E9008D7D53 /* UIImage+MCFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		73CB202125DF90E9008D7D53 /* UIImage+MCFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CB201F25DF90E9008D7D53 /* UIImage+MCFoundation.m */; };
+		73CB202825DF9122008D7D53 /* UIButton+MCFoundationKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 73CB202625DF9122008D7D53 /* UIButton+MCFoundationKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		73CB202925DF9122008D7D53 /* UIButton+MCFoundationKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CB202725DF9122008D7D53 /* UIButton+MCFoundationKit.m */; };
+		73CB203625DF944B008D7D53 /* UILabel+MCFoundationKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 73CB203425DF944B008D7D53 /* UILabel+MCFoundationKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		73CB203725DF944B008D7D53 /* UILabel+MCFoundationKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CB203525DF944B008D7D53 /* UILabel+MCFoundationKit.m */; };
+		73CB203D25DF947C008D7D53 /* UITextField+MCFoundationKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 73CB203B25DF947C008D7D53 /* UITextField+MCFoundationKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		73CB203E25DF947C008D7D53 /* UITextField+MCFoundationKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CB203C25DF947C008D7D53 /* UITextField+MCFoundationKit.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +78,20 @@
 		73A4B1002553ABFF00A30995 /* MCAudioManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MCAudioManager.m; sourceTree = "<group>"; };
 		73C23CDA25CFD9B000AFCFF0 /* MCScanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCScanner.h; sourceTree = "<group>"; };
 		73C23CDB25CFD9B000AFCFF0 /* MCScanner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MCScanner.m; sourceTree = "<group>"; };
+		73CB200825DF8944008D7D53 /* NSData+MCFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+MCFoundation.h"; sourceTree = "<group>"; };
+		73CB200925DF8944008D7D53 /* NSData+MCFoundation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+MCFoundation.m"; sourceTree = "<group>"; };
+		73CB200F25DF9086008D7D53 /* NSDate+MCFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+MCFoundation.h"; sourceTree = "<group>"; };
+		73CB201025DF9086008D7D53 /* NSDate+MCFoundation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+MCFoundation.m"; sourceTree = "<group>"; };
+		73CB201725DF90B2008D7D53 /* UIColor+MCFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+MCFoundation.h"; sourceTree = "<group>"; };
+		73CB201825DF90B2008D7D53 /* UIColor+MCFoundation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MCFoundation.m"; sourceTree = "<group>"; };
+		73CB201E25DF90E9008D7D53 /* UIImage+MCFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+MCFoundation.h"; sourceTree = "<group>"; };
+		73CB201F25DF90E9008D7D53 /* UIImage+MCFoundation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MCFoundation.m"; sourceTree = "<group>"; };
+		73CB202625DF9122008D7D53 /* UIButton+MCFoundationKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+MCFoundationKit.h"; sourceTree = "<group>"; };
+		73CB202725DF9122008D7D53 /* UIButton+MCFoundationKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+MCFoundationKit.m"; sourceTree = "<group>"; };
+		73CB203425DF944B008D7D53 /* UILabel+MCFoundationKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+MCFoundationKit.h"; sourceTree = "<group>"; };
+		73CB203525DF944B008D7D53 /* UILabel+MCFoundationKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+MCFoundationKit.m"; sourceTree = "<group>"; };
+		73CB203B25DF947C008D7D53 /* UITextField+MCFoundationKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+MCFoundationKit.h"; sourceTree = "<group>"; };
+		73CB203C25DF947C008D7D53 /* UITextField+MCFoundationKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+MCFoundationKit.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +178,13 @@
 		736BF669225ED33C0091DC06 /* MCFoundationKit */ = {
 			isa = PBXGroup;
 			children = (
+				73CB203A25DF9463008D7D53 /* UITextField+MCFoundationKit */,
+				73CB203325DF943B008D7D53 /* UILabel+MCFoundationKit */,
+				73CB202525DF9108008D7D53 /* UIButton+MCFoundationKit */,
+				73CB201D25DF90BC008D7D53 /* UIImage+MCFoundation */,
+				73CB201625DF909E008D7D53 /* UIColor+MCFoundation */,
+				73CB200E25DF9067008D7D53 /* NSDate+MCFoundation */,
+				73CB200725DF8917008D7D53 /* NSData+MCFoundation */,
 				73C23CD925CFD8FB00AFCFF0 /* MCScanner */,
 				7307E96625B9280100D6D40E /* UIView+MCFoundation */,
 				73A4B0FE2553ABE000A30995 /* MCAudio */,
@@ -215,6 +250,69 @@
 			path = MCScanner;
 			sourceTree = "<group>";
 		};
+		73CB200725DF8917008D7D53 /* NSData+MCFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				73CB200825DF8944008D7D53 /* NSData+MCFoundation.h */,
+				73CB200925DF8944008D7D53 /* NSData+MCFoundation.m */,
+			);
+			path = "NSData+MCFoundation";
+			sourceTree = "<group>";
+		};
+		73CB200E25DF9067008D7D53 /* NSDate+MCFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				73CB200F25DF9086008D7D53 /* NSDate+MCFoundation.h */,
+				73CB201025DF9086008D7D53 /* NSDate+MCFoundation.m */,
+			);
+			path = "NSDate+MCFoundation";
+			sourceTree = "<group>";
+		};
+		73CB201625DF909E008D7D53 /* UIColor+MCFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				73CB201725DF90B2008D7D53 /* UIColor+MCFoundation.h */,
+				73CB201825DF90B2008D7D53 /* UIColor+MCFoundation.m */,
+			);
+			path = "UIColor+MCFoundation";
+			sourceTree = "<group>";
+		};
+		73CB201D25DF90BC008D7D53 /* UIImage+MCFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				73CB201E25DF90E9008D7D53 /* UIImage+MCFoundation.h */,
+				73CB201F25DF90E9008D7D53 /* UIImage+MCFoundation.m */,
+			);
+			path = "UIImage+MCFoundation";
+			sourceTree = "<group>";
+		};
+		73CB202525DF9108008D7D53 /* UIButton+MCFoundationKit */ = {
+			isa = PBXGroup;
+			children = (
+				73CB202625DF9122008D7D53 /* UIButton+MCFoundationKit.h */,
+				73CB202725DF9122008D7D53 /* UIButton+MCFoundationKit.m */,
+			);
+			path = "UIButton+MCFoundationKit";
+			sourceTree = "<group>";
+		};
+		73CB203325DF943B008D7D53 /* UILabel+MCFoundationKit */ = {
+			isa = PBXGroup;
+			children = (
+				73CB203425DF944B008D7D53 /* UILabel+MCFoundationKit.h */,
+				73CB203525DF944B008D7D53 /* UILabel+MCFoundationKit.m */,
+			);
+			path = "UILabel+MCFoundationKit";
+			sourceTree = "<group>";
+		};
+		73CB203A25DF9463008D7D53 /* UITextField+MCFoundationKit */ = {
+			isa = PBXGroup;
+			children = (
+				73CB203B25DF947C008D7D53 /* UITextField+MCFoundationKit.h */,
+				73CB203C25DF947C008D7D53 /* UITextField+MCFoundationKit.m */,
+			);
+			path = "UITextField+MCFoundationKit";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -223,16 +321,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				73A4009725D0E1D900BF1E57 /* MCScannerViewController.h in Headers */,
+				73CB203D25DF947C008D7D53 /* UITextField+MCFoundationKit.h in Headers */,
 				730509A724405A9B00DB78A5 /* MCCommonDefine.h in Headers */,
+				73CB202825DF9122008D7D53 /* UIButton+MCFoundationKit.h in Headers */,
 				730509A42440574700DB78A5 /* MCUserDefaultsManager.h in Headers */,
 				7399902E2506242200DA2720 /* MCCollectionManager.h in Headers */,
+				73CB201925DF90B2008D7D53 /* UIColor+MCFoundation.h in Headers */,
 				7305099F2440511A00DB78A5 /* MCFileManager.h in Headers */,
+				73CB203625DF944B008D7D53 /* UILabel+MCFoundationKit.h in Headers */,
 				7338F1F724D15F3D00B3A103 /* MCRSA.h in Headers */,
+				73CB202025DF90E9008D7D53 /* UIImage+MCFoundation.h in Headers */,
+				73CB200A25DF8944008D7D53 /* NSData+MCFoundation.h in Headers */,
 				736BF677225ED41C0091DC06 /* MCUITools.h in Headers */,
 				73A4B1012553ABFF00A30995 /* MCAudioManager.h in Headers */,
 				733E551422817E190043D826 /* MCModalDialog.h in Headers */,
 				73711F5B24A0AA2D00B32CFB /* MCBitSet.h in Headers */,
 				736BF66C225ED33C0091DC06 /* MCFoundationKit.h in Headers */,
+				73CB201125DF9086008D7D53 /* NSDate+MCFoundation.h in Headers */,
 				7307E96925B9283000D6D40E /* UIView+MCFoundation.h in Headers */,
 				73C23CDC25CFD9B000AFCFF0 /* MCScanner.h in Headers */,
 				7340D7B8251993C5009D7677 /* NSString+MCFoundation.h in Headers */,
@@ -308,14 +413,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				73A4B1022553ABFF00A30995 /* MCAudioManager.m in Sources */,
+				73CB202925DF9122008D7D53 /* UIButton+MCFoundationKit.m in Sources */,
+				73CB200B25DF8944008D7D53 /* NSData+MCFoundation.m in Sources */,
+				73CB201A25DF90B2008D7D53 /* UIColor+MCFoundation.m in Sources */,
 				7338F1F824D15F3D00B3A103 /* MCRSA.m in Sources */,
+				73CB202125DF90E9008D7D53 /* UIImage+MCFoundation.m in Sources */,
 				730509A52440574700DB78A5 /* MCUserDefaultsManager.m in Sources */,
 				736BF678225ED41C0091DC06 /* MCUITools.m in Sources */,
 				733E551522817E190043D826 /* MCModalDialog.m in Sources */,
 				7307E96A25B9283000D6D40E /* UIView+MCFoundation.m in Sources */,
+				73CB203E25DF947C008D7D53 /* UITextField+MCFoundationKit.m in Sources */,
+				73CB201225DF9086008D7D53 /* NSDate+MCFoundation.m in Sources */,
 				7340D7B9251993C5009D7677 /* NSString+MCFoundation.m in Sources */,
 				73711F5C24A0AA2D00B32CFB /* MCBitSet.m in Sources */,
 				730509A02440511A00DB78A5 /* MCFileManager.m in Sources */,
+				73CB203725DF944B008D7D53 /* UILabel+MCFoundationKit.m in Sources */,
 				73A4009825D0E1D900BF1E57 /* MCScannerViewController.m in Sources */,
 				73C23CDD25CFD9B000AFCFF0 /* MCScanner.m in Sources */,
 				7399902F2506242200DA2720 /* MCCollectionManager.m in Sources */,
@@ -464,7 +576,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mc.MCFoundationKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -492,7 +604,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mc.MCFoundationKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

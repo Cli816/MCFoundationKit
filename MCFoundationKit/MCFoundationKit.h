@@ -19,3 +19,10 @@
 #import <MCFoundationKit/UIView+MCFoundation.h>
 #import <MCFoundationKit/MCScanner.h>
 #import <MCFoundationKit/MCScannerViewController.h>
+#import <MCFoundationKit/NSData+MCFoundation.h>
+#import <MCFoundationKit/NSDate+MCFoundation.h>
+#import <MCFoundationKit/UIColor+MCFoundation.h>
+#import <MCFoundationKit/UIImage+MCFoundation.h>
+#import <MCFoundationKit/UIButton+MCFoundation.h>
+#import <MCFoundationKit/UILabel+MCFoundation.h>
+#import <MCFoundationKit/UITextField+MCFoundation.h>
