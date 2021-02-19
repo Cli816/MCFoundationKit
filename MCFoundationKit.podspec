@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "MCFoundationKit"
-  spec.version      = "1.0.5"
+  spec.version      = "1.0.6"
   spec.summary      = "自定义基础工具库."
 
   # This description is used to generate tags and improve search results.
