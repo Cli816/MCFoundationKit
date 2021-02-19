@@ -45,7 +45,7 @@
 		73CB202925DF9122008D7D53 /* UIButton+MCFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CB202725DF9122008D7D53 /* UIButton+MCFoundation.m */; };
 		73CB203625DF944B008D7D53 /* UILabel+MCFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 73CB203425DF944B008D7D53 /* UILabel+MCFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		73CB203725DF944B008D7D53 /* UILabel+MCFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CB203525DF944B008D7D53 /* UILabel+MCFoundation.m */; };
-		73CB204A25DF9A75008D7D53 /* UITextField+MCFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 73CB204825DF9A75008D7D53 /* UITextField+MCFoundation.h */; };
+		73CB204A25DF9A75008D7D53 /* UITextField+MCFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 73CB204825DF9A75008D7D53 /* UITextField+MCFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		73CB204B25DF9A75008D7D53 /* UITextField+MCFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CB204925DF9A75008D7D53 /* UITextField+MCFoundation.m */; };
 /* End PBXBuildFile section */
 
@@ -576,7 +576,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mc.MCFoundationKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -604,7 +604,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 1.0.5;
+				MARKETING_VERSION = 1.0.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mc.MCFoundationKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
