@@ -1,14 +1,14 @@
 //
-//  UIButton+MCFoundationKit.m
-//  MCFoundationKit
+//  UIButton+MCFoundation.m
+//  MCFoundation
 //
 //  Created by wang maocai on 2021/2/19.
 //  Copyright © 2021 王茂. All rights reserved.
 //
 
-#import "UIButton+MCFoundationKit.h"
+#import "UIButton+MCFoundation.h"
 
-@implementation UIButton (MCFoundationKit)
+@implementation UIButton (MCFoundation)
 
 - (void)changeButtonLayoutTypeTo:(UIToolsButtonLayoutType)type spacing:(CGFloat)spacing {
     UIButton *button = self;

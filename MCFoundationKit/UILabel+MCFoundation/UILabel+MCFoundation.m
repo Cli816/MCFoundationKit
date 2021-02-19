@@ -1,14 +1,14 @@
 //
-//  UILabel+MCFoundationKit.m
-//  MCFoundationKit
+//  UILabel+MCFoundation.m
+//  MCFoundation
 //
 //  Created by wang maocai on 2021/2/19.
 //  Copyright © 2021 王茂. All rights reserved.
 //
 
-#import "UILabel+MCFoundationKit.h"
+#import "UILabel+MCFoundation.h"
 
-@implementation UILabel (MCFoundationKit)
+@implementation UILabel (MCFoundation)
 
 - (void)setAttributedTexts:(NSArray<NSString *> *)texts fonts:(NSArray<UIFont *> *)fonts colors:(NSArray<UIColor *> *)colors {
     UILabel *label = self;

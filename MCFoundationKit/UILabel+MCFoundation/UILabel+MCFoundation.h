@@ -1,6 +1,6 @@
 //
-//  UILabel+MCFoundationKit.h
-//  MCFoundationKit
+//  UILabel+MCFoundation.h
+//  MCFoundation
 //
 //  Created by wang maocai on 2021/2/19.
 //  Copyright © 2021 王茂. All rights reserved.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UILabel (MCFoundationKit)
+@interface UILabel (MCFoundation)
 
 /**
  * 设置Label AttributedText

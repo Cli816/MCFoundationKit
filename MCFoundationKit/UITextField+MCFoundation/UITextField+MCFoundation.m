@@ -1,14 +1,14 @@
 //
-//  UITextField+MCFoundationKit.m
+//  UITextField+MCFoundation.m
 //  MCFoundationKit
 //
 //  Created by wang maocai on 2021/2/19.
 //  Copyright © 2021 王茂. All rights reserved.
 //
 
-#import "UITextField+MCFoundationKit.h"
+#import "UITextField+MCFoundation.h"
 
-@implementation UITextField (MCFoundationKit)
+@implementation UITextField (MCFoundation)
 
 - (void)textInputCheckByMaxStrLength:(int)maxStrLength {
     UITextField *textField = self;

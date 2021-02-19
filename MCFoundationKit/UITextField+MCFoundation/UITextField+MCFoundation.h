@@ -1,5 +1,5 @@
 //
-//  UITextField+MCFoundationKit.h
+//  UITextField+MCFoundation.h
 //  MCFoundationKit
 //
 //  Created by wang maocai on 2021/2/19.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UITextField (MCFoundationKit)
+@interface UITextField (MCFoundation)
 
 /**
  * 输入检测

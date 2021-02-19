@@ -1,6 +1,6 @@
 //
-//  UIButton+MCFoundationKit.h
-//  MCFoundationKit
+//  UIButton+MCFoundation.h
+//  MCFoundation
 //
 //  Created by wang maocai on 2021/2/19.
 //  Copyright © 2021 王茂. All rights reserved.
@@ -21,7 +21,7 @@ typedef NS_OPTIONS(NSUInteger, UIToolsButtonLayoutType) {
     UIToolsButtonLayoutType_VerticalReversal    // 竖直反转
 };
 
-@interface UIButton (MCFoundationKit)
+@interface UIButton (MCFoundation)
 
 /**
  * 改变按钮的内部布局

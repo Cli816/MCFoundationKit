@@ -19,4 +19,4 @@
   14.二维码扫描
 等。
 
-pod 'MCFoundationKit', '~>1.0.4'
+pod 'MCFoundationKit', '~>1.0.5'
