@@ -232,7 +232,8 @@
             resultSize = [str boundingRectWithSize:CGSizeMake(size.width, size.height) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size;
         }
     }
-    resultSize = CGSizeMake(resultSize.width + 1.f, resultSize.height + 1.f);
+    resultSize = CGSizeMake(resultSize.width, resultSize.height);
+//    resultSize = CGSizeMake(resultSize.width + 1, resultSize.height + 1);
     return resultSize;
 }
 
