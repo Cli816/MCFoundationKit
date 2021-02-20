@@ -1,21 +1,21 @@
 //
-//  UINavigationController+MCFoundation.m
+//  UIViewController+MCFoundation.m
 //  MCFoundationKit
 //
-//  Created by wang maocai on 2021/2/19.
+//  Created by wang maocai on 2021/2/20.
 //  Copyright © 2021 王茂. All rights reserved.
 //
 
-#import "UINavigationController+MCFoundation.h"
+#import "UIViewController+MCFoundation.h"
 
 @implementation MCNavigationTitleView
 
 @end
 
-@implementation UINavigationController (MCFoundation)
+@implementation UIViewController (MCFoundation)
 
 - (void)setNavigationTitle:(NSString *)title icon:(UIImage *)icon font:(UIFont *)font color:(UIColor *)color {
-    UINavigationBar *navigationBar = self.navigationBar;
+    UINavigationBar *navigationBar = self.navigationController.navigationBar;
     if (navigationBar != nil) {
         CGRect navigationBarFrame = navigationBar.frame;
         
@@ -135,7 +135,7 @@
 - (UIView *)createNavigationItemView:(NSString *)title icon:(UIImage *)image type:(int)type font:(UIFont *)font color:(UIColor *)color target:(id)target action:(SEL)action {
     UIView *barItemView = nil;
     
-    UINavigationBar *navigationBar = self.navigationBar;
+    UINavigationBar *navigationBar = self.navigationController.navigationBar;
     if (navigationBar != nil) {
         CGRect navigationBarFrame = navigationBar.frame;
         

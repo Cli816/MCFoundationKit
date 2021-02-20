@@ -1,8 +1,8 @@
 //
-//  UINavigationController+MCFoundation.h
+//  UIViewController+MCFoundation.h
 //  MCFoundationKit
 //
-//  Created by wang maocai on 2021/2/19.
+//  Created by wang maocai on 2021/2/20.
 //  Copyright © 2021 王茂. All rights reserved.
 //
 
@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface UINavigationController (MCFoundation)
+@interface UIViewController (MCFoundation)
 
 /**
  * 设置导航栏标题

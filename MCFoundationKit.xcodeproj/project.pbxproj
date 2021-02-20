@@ -20,6 +20,8 @@
 		733E551522817E190043D826 /* MCModalDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 733E551322817E190043D826 /* MCModalDialog.m */; };
 		7340D7B8251993C5009D7677 /* NSString+MCFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 7340D7B6251993C5009D7677 /* NSString+MCFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7340D7B9251993C5009D7677 /* NSString+MCFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7340D7B7251993C5009D7677 /* NSString+MCFoundation.m */; };
+		736912BD25E0A9390076669C /* UIViewController+MCFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 736912BB25E0A9390076669C /* UIViewController+MCFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		736912BE25E0A9390076669C /* UIViewController+MCFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 736912BC25E0A9390076669C /* UIViewController+MCFoundation.m */; };
 		736BF66C225ED33C0091DC06 /* MCFoundationKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 736BF66A225ED33C0091DC06 /* MCFoundationKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		736BF677225ED41C0091DC06 /* MCUITools.h in Headers */ = {isa = PBXBuildFile; fileRef = 736BF675225ED41C0091DC06 /* MCUITools.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		736BF678225ED41C0091DC06 /* MCUITools.m in Sources */ = {isa = PBXBuildFile; fileRef = 736BF676225ED41C0091DC06 /* MCUITools.m */; };
@@ -47,8 +49,6 @@
 		73CB203725DF944B008D7D53 /* UILabel+MCFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CB203525DF944B008D7D53 /* UILabel+MCFoundation.m */; };
 		73CB204A25DF9A75008D7D53 /* UITextField+MCFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 73CB204825DF9A75008D7D53 /* UITextField+MCFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		73CB204B25DF9A75008D7D53 /* UITextField+MCFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CB204925DF9A75008D7D53 /* UITextField+MCFoundation.m */; };
-		73CB205E25DFB8F0008D7D53 /* UINavigationController+MCFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = 73CB205C25DFB8F0008D7D53 /* UINavigationController+MCFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		73CB205F25DFB8F0008D7D53 /* UINavigationController+MCFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CB205D25DFB8F0008D7D53 /* UINavigationController+MCFoundation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +65,8 @@
 		733E551322817E190043D826 /* MCModalDialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MCModalDialog.m; sourceTree = "<group>"; };
 		7340D7B6251993C5009D7677 /* NSString+MCFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+MCFoundation.h"; sourceTree = "<group>"; };
 		7340D7B7251993C5009D7677 /* NSString+MCFoundation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+MCFoundation.m"; sourceTree = "<group>"; };
+		736912BB25E0A9390076669C /* UIViewController+MCFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MCFoundation.h"; sourceTree = "<group>"; };
+		736912BC25E0A9390076669C /* UIViewController+MCFoundation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MCFoundation.m"; sourceTree = "<group>"; };
 		736BF667225ED33C0091DC06 /* MCFoundationKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MCFoundationKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		736BF66A225ED33C0091DC06 /* MCFoundationKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCFoundationKit.h; sourceTree = "<group>"; };
 		736BF66B225ED33C0091DC06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -94,8 +96,6 @@
 		73CB203525DF944B008D7D53 /* UILabel+MCFoundation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+MCFoundation.m"; sourceTree = "<group>"; };
 		73CB204825DF9A75008D7D53 /* UITextField+MCFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+MCFoundation.h"; sourceTree = "<group>"; };
 		73CB204925DF9A75008D7D53 /* UITextField+MCFoundation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+MCFoundation.m"; sourceTree = "<group>"; };
-		73CB205C25DFB8F0008D7D53 /* UINavigationController+MCFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+MCFoundation.h"; sourceTree = "<group>"; };
-		73CB205D25DFB8F0008D7D53 /* UINavigationController+MCFoundation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+MCFoundation.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +163,15 @@
 			path = "NSString+MCFoundation";
 			sourceTree = "<group>";
 		};
+		736912BA25E0A9080076669C /* UIViewController+MCFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				736912BB25E0A9390076669C /* UIViewController+MCFoundation.h */,
+				736912BC25E0A9390076669C /* UIViewController+MCFoundation.m */,
+			);
+			path = "UIViewController+MCFoundation";
+			sourceTree = "<group>";
+		};
 		736BF65D225ED33C0091DC06 = {
 			isa = PBXGroup;
 			children = (
@@ -182,7 +191,7 @@
 		736BF669225ED33C0091DC06 /* MCFoundationKit */ = {
 			isa = PBXGroup;
 			children = (
-				73CB205B25DFB8D4008D7D53 /* UINavigationController+MCFoundation */,
+				736912BA25E0A9080076669C /* UIViewController+MCFoundation */,
 				73CB204725DF9A65008D7D53 /* UITextField+MCFoundation */,
 				73CB203325DF943B008D7D53 /* UILabel+MCFoundation */,
 				73CB202525DF9108008D7D53 /* UIButton+MCFoundation */,
@@ -318,15 +327,6 @@
 			path = "UITextField+MCFoundation";
 			sourceTree = "<group>";
 		};
-		73CB205B25DFB8D4008D7D53 /* UINavigationController+MCFoundation */ = {
-			isa = PBXGroup;
-			children = (
-				73CB205C25DFB8F0008D7D53 /* UINavigationController+MCFoundation.h */,
-				73CB205D25DFB8F0008D7D53 /* UINavigationController+MCFoundation.m */,
-			);
-			path = "UINavigationController+MCFoundation";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -350,8 +350,8 @@
 				733E551422817E190043D826 /* MCModalDialog.h in Headers */,
 				73711F5B24A0AA2D00B32CFB /* MCBitSet.h in Headers */,
 				736BF66C225ED33C0091DC06 /* MCFoundationKit.h in Headers */,
+				736912BD25E0A9390076669C /* UIViewController+MCFoundation.h in Headers */,
 				73CB201125DF9086008D7D53 /* NSDate+MCFoundation.h in Headers */,
-				73CB205E25DFB8F0008D7D53 /* UINavigationController+MCFoundation.h in Headers */,
 				7307E96925B9283000D6D40E /* UIView+MCFoundation.h in Headers */,
 				73CB204A25DF9A75008D7D53 /* UITextField+MCFoundation.h in Headers */,
 				73C23CDC25CFD9B000AFCFF0 /* MCScanner.h in Headers */,
@@ -439,7 +439,7 @@
 				7307E96A25B9283000D6D40E /* UIView+MCFoundation.m in Sources */,
 				73CB201225DF9086008D7D53 /* NSDate+MCFoundation.m in Sources */,
 				7340D7B9251993C5009D7677 /* NSString+MCFoundation.m in Sources */,
-				73CB205F25DFB8F0008D7D53 /* UINavigationController+MCFoundation.m in Sources */,
+				736912BE25E0A9390076669C /* UIViewController+MCFoundation.m in Sources */,
 				73CB204B25DF9A75008D7D53 /* UITextField+MCFoundation.m in Sources */,
 				73711F5C24A0AA2D00B32CFB /* MCBitSet.m in Sources */,
 				730509A02440511A00DB78A5 /* MCFileManager.m in Sources */,
@@ -592,7 +592,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 1.0.7;
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mc.MCFoundationKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -620,7 +620,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
-				MARKETING_VERSION = 1.0.7;
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mc.MCFoundationKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

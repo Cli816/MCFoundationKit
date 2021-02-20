@@ -26,4 +26,4 @@
 #import <MCFoundationKit/UIButton+MCFoundation.h>
 #import <MCFoundationKit/UILabel+MCFoundation.h>
 #import <MCFoundationKit/UITextField+MCFoundation.h>
-#import <MCFoundationKit/UINavigationController+MCFoundation.h>
+#import <MCFoundationKit/UIViewController+MCFoundation.h>
