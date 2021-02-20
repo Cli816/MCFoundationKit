@@ -14,6 +14,8 @@
 
 @implementation UIViewController (MCFoundation)
 
+#pragma mark - Navigation
+
 - (void)setNavigationTitle:(NSString *)title icon:(UIImage *)icon font:(UIFont *)font color:(UIColor *)color {
     UINavigationBar *navigationBar = self.navigationController.navigationBar;
     if (navigationBar != nil) {
@@ -173,6 +175,58 @@
     }
     
     return barItemView;
+}
+
+#pragma mark - Alert
+
+- (UIAlertController *)showAlertWithComplete:(void (^)(void))complete clickedAction:(void (^)(UIAlertAction * _Nonnull))clickedAction title:(NSString *)title message:(NSString *)message preferredStyle:(UIAlertControllerStyle)preferredStyle cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString *)destructiveButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:preferredStyle];
+    if ([cancelButtonTitle length] > 0) {
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelButtonTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            if (clickedAction) {
+                clickedAction(action);
+            }
+        }];
+        [alertController addAction:cancelAction];
+    }
+    if ([destructiveButtonTitle length] > 0) {
+        UIAlertAction *lAction = [UIAlertAction actionWithTitle:destructiveButtonTitle style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+            if (clickedAction) {
+                clickedAction(action);
+            }
+        }];
+        [alertController addAction:lAction];
+    }
+    NSMutableArray *titlesArray = [NSMutableArray array];
+    if (otherButtonTitles) {
+        [titlesArray addObject:otherButtonTitles];
+        
+        va_list args;
+        va_start(args, otherButtonTitles);
+        NSString *otherString = nil;
+        while ((otherString = va_arg(args, NSString *)) != nil) {
+            [titlesArray addObject:otherString];
+        }
+        va_end(args);
+    }
+    for (NSString *otherStr in titlesArray) {
+        if ([otherStr length] > 0) {
+            UIAlertAction *lAction = [UIAlertAction actionWithTitle:otherStr style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                if (clickedAction) {
+                    clickedAction(action);
+                }
+            }];
+            [alertController addAction:lAction];
+        }
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:alertController animated:YES completion:^{
+            if (complete) {
+                complete();
+            }
+        }];
+    });
+    return alertController;
 }
 
 @end

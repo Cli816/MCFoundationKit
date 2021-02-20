@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIViewController (MCFoundation)
 
+#pragma mark - Navigation
+
 /**
  * 设置导航栏标题
  */
@@ -41,6 +43,17 @@ NS_ASSUME_NONNULL_BEGIN
  * 设置NavigationBar右侧自定义Views，从右->左
 */
 - (void)setNavigationItemRightCustomViews:(nullable UIView *)customViews, ... NS_REQUIRES_NIL_TERMINATION;
+
+#pragma mark - Alert
+
+- (UIAlertController *)showAlertWithComplete:(void (^ _Nullable)(void))complete
+                               clickedAction:(void (^ _Nullable)(UIAlertAction *action))clickedAction
+                                       title:(nullable NSString *)title
+                                     message:(nullable NSString *)message
+                              preferredStyle:(UIAlertControllerStyle)preferredStyle
+                           cancelButtonTitle:(nullable NSString *)cancelButtonTitle
+                      destructiveButtonTitle:(nullable NSString *)destructiveButtonTitle
+                           otherButtonTitles:(nullable NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION;
 
 @end
 
