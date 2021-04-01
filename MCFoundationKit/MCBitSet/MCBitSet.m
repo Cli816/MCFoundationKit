@@ -32,7 +32,7 @@
     for (NSInteger i = [longArray count] - 1; i >= 0; i --) {
         NSNumber *num = longArray[i];
         long value = [num longValue];
-        NSString *str = [MCUITools convertIntegerToHexStr:value];
+        NSString *str = [NSString convertIntegerToHexStr:value];
         if ([str length] > 0) {
             [bitSetStr appendString:str];
         }

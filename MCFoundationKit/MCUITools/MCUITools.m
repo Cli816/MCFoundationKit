@@ -14,71 +14,13 @@
 
 #pragma mark - 数据
 
-+ (NSString *)convertIntegerToHexStr:(NSInteger)integer
-{
-    NSString *hexStr = [NSString stringWithFormat:@"%1lx", integer];
-    return hexStr;
-}
-
-+ (NSData *)longValueToData:(long)value {
-    Byte *byte = (Byte *)malloc(sizeof(value));
-    
-    byte[0] = ((value >> 56) & 0xFF);
-    byte[1] = ((value >> 48) & 0xFF);
-    byte[2] = ((value >> 40) & 0xFF);
-    byte[3] = ((value >> 32) & 0xFF);
-    byte[4] = ((value >> 24) & 0xFF);
-    byte[5] = ((value >> 16) & 0xFF);
-    byte[6] = ((value >> 8) & 0xFF);
-    byte[7] = (value & 0xFF);
-    
-    NSData *data = [NSData dataWithBytes:byte length:sizeof(byte)];
-    return data;
-}
-
 + (NSInteger)getRandomInteger:(NSInteger)from to:(NSInteger)to {
     return (NSInteger)(from + (arc4random() % (to - from + 1)));
 }
 
-#pragma mark - 字符串
-
-+ (NSString *)stringPathWithSuffix:(NSString *)suffix components:(NSString *)components, ... NS_REQUIRES_NIL_TERMINATION
-{
-    NSMutableString *lRetStr = [NSMutableString string];
-    
-    NSMutableArray *lMuComponentsArray = [NSMutableArray array];
-    if (components) {
-//        [lMuComponentsArray addObject:components];
-        [lRetStr appendString:components];
-        
-        va_list args;
-        va_start(args, components);
-        NSString *otherString = nil;
-        while ((otherString = va_arg(args, NSString *)) != nil) {
-            [lMuComponentsArray addObject:otherString];
-        }
-        va_end(args);
-    }
-    
-    if ([lMuComponentsArray count] > 0) {
-        NSString *lComponentsStr = [NSString pathWithComponents:lMuComponentsArray];
-        if ([lComponentsStr length] > 0) {
-//            [lRetStr appendString:lComponentsStr];
-            [lRetStr appendFormat:@"/%@", lComponentsStr];
-        }
-    }
-    if ([suffix length] > 0) {
-        [lRetStr appendString:@"."];
-        [lRetStr appendString:suffix];
-    }
-    
-    return lRetStr;
-}
-
 #pragma mark - 计时器
 
-+ (void)startCountdownTimer:(dispatch_source_t)timer timeInterval:(NSTimeInterval)timeInterval complete:(void(^)(void))completeBlock progress:(void(^)(int mSecond))progressBlock
-{
++ (void)startCountdownTimer:(dispatch_source_t)timer timeInterval:(NSTimeInterval)timeInterval complete:(void(^)(void))completeBlock progress:(void(^)(int mSecond))progressBlock {
     int seconds = timeInterval;
     
     dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
@@ -100,8 +42,7 @@
     dispatch_resume(timer);
 }
 
-+ (void)cancelCountdownTimer:(dispatch_source_t)timer
-{
++ (void)cancelCountdownTimer:(dispatch_source_t)timer {
     if (timer) {
         dispatch_source_cancel(timer);
         timer = nil;
@@ -110,8 +51,7 @@
 
 #pragma mark - 系统
 
-+ (void)exitApplication
-{
++ (void)exitApplication {
     [[UIApplication sharedApplication] performSelector:@selector(suspend)];
     [self dispatchAfterLittleOnMainQueue:^{
         exit(1);
@@ -200,8 +140,7 @@
     return deviceModel;
 }
 
-+ (NSString *)getSystemLanguageCode
-{
++ (NSString *)getSystemLanguageCode {
     NSString *languageCode = [[NSLocale preferredLanguages] firstObject];
     NSString *countryCode = [NSString stringWithFormat:@"-%@", [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]];
     if (languageCode) {
@@ -212,17 +151,38 @@
 
 #pragma mark - UI
 
-+ (UIWindow *)topLevelWindow
-{
-    UIWindow *topWindow = [UIApplication sharedApplication].keyWindow;
-    for (UIWindow *win in [[UIApplication sharedApplication].windows reverseObjectEnumerator]) {
-        if ([win isEqual:topWindow]) {
++ (UIWindow *)topNormalWindow {
+    UIWindow *topWindow = nil;
+    
+    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    if (!keyWindow) {
+        [[UIApplication sharedApplication].delegate.window makeKeyAndVisible];
+        keyWindow = [UIApplication sharedApplication].delegate.window;
+    }
+    if ([keyWindow isKindOfClass:[UIWindow class]] &&
+        ![keyWindow isKindOfClass:NSClassFromString(@"UITextEffectsWindow")] &&
+        CGRectEqualToRect(keyWindow.bounds, [UIScreen mainScreen].bounds) &&
+        keyWindow.windowLevel >= UIWindowLevelNormal &&
+        keyWindow.windowLevel < UIWindowLevelStatusBar &&
+        keyWindow.hidden == NO) {
+        topWindow = keyWindow;
+    }
+    
+    for (UIWindow *window in [[UIApplication sharedApplication].windows reverseObjectEnumerator]) {
+        if ([window isEqual:topWindow]) {
             continue;
         }
-        if (win.windowLevel > topWindow.windowLevel && win.hidden != YES) {
-            topWindow = win;
+        if ([window isKindOfClass:[UIWindow class]] &&
+            ![window isKindOfClass:NSClassFromString(@"UITextEffectsWindow")] &&
+            CGRectEqualToRect(window.bounds, [UIScreen mainScreen].bounds) &&
+            window.windowLevel > topWindow.windowLevel &&
+            window.windowLevel < UIWindowLevelStatusBar &&
+            window.hidden == NO) {
+            topWindow = window;
         }
     }
+    [topWindow endEditing:YES];
+    
     return topWindow;
 }
 

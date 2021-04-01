@@ -79,6 +79,22 @@
     return lDataInt;
 }
 
++ (NSData *)longValueToData:(long)value {
+    Byte *byte = (Byte *)malloc(sizeof(value));
+    
+    byte[0] = ((value >> 56) & 0xFF);
+    byte[1] = ((value >> 48) & 0xFF);
+    byte[2] = ((value >> 40) & 0xFF);
+    byte[3] = ((value >> 32) & 0xFF);
+    byte[4] = ((value >> 24) & 0xFF);
+    byte[5] = ((value >> 16) & 0xFF);
+    byte[6] = ((value >> 8) & 0xFF);
+    byte[7] = (value & 0xFF);
+    
+    NSData *data = [NSData dataWithBytes:byte length:sizeof(byte)];
+    return data;
+}
+
 - (UIImage *)gifImage {
     NSData *data = self;
     CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef)data, NULL);

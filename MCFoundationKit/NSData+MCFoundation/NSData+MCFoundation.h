@@ -41,6 +41,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSInteger)convertDataToIntegerPositional;
 
 /**
+ * long转data
+ * 按位转换，前面带补0
+ */
++ (NSData *)longValueToData:(long)value;
+
+/**
  * 加载gif data为图片
  */
 - (UIImage *)gifImage;

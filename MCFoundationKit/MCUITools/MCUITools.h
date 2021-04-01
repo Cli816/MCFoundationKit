@@ -14,28 +14,9 @@
 #pragma mark - 数据
 
 /**
- * 10进制转16进制
- */
-+ (NSString *)convertIntegerToHexStr:(NSInteger)integer;
-
-/**
- * long转data
- * 按位转换，前面带补0
- */
-+ (NSData *)longValueToData:(long)value;
-
-/**
  * 获取一个随机整数，包含from，包含to
  */
 + (NSInteger)getRandomInteger:(NSInteger)from to:(NSInteger)to;
-
-#pragma mark - 字符串
-
-/**
- * 字符串路径拼接
- * suffix -> 后缀名，例如"html"、"png"，可以为nil
- */
-+ (NSString *)stringPathWithSuffix:(NSString *)suffix components:(NSString *)components, ... NS_REQUIRES_NIL_TERMINATION;
 
 #pragma mark - 计时器
 
@@ -69,9 +50,9 @@
 #pragma mark - UI
 
 /**
- * 获取最上层window
+ * 获取最上层Normal Window
  */
-+ (UIWindow *)topLevelWindow;
++ (UIWindow *)topNormalWindow;
 
 /**
  * 主线程微小的延迟，用作UI响应不及时的处理
