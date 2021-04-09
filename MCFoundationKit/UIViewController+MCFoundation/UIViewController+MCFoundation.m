@@ -135,6 +135,7 @@
 - (void)setPopGestureRecognizerEnabled:(BOOL)enabled {
     if (self.navigationController &&
         [self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = enabled;
         if (enabled) {
             self.navigationController.interactivePopGestureRecognizer.delegate = self;
         } else {
