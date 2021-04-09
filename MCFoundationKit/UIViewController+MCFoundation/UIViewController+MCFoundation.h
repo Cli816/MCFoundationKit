@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface UIViewController (MCFoundation) <UIGestureRecognizerDelegate>
+@interface UIViewController (MCFoundation) <UIGestureRecognizerDelegate, UIPopoverPresentationControllerDelegate>
 
 #pragma mark - Navigation
 
@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Popover
 
-- (void)showPopoverController:(UIViewController *)popoverVC contentSize:(CGSize)contentSize sourceView:(UIView *)sourceView delegate:(nullable id<UIPopoverPresentationControllerDelegate>)delegate backgroundViewClass:(Class)backgroundViewClass arrowDirections:(UIPopoverArrowDirection)arrowDirections complete:(void (^ _Nullable)(void))complete;
+- (void)showPopoverController:(UIViewController *)popoverVC contentSize:(CGSize)contentSize sourceView:(UIView *)sourceView backgroundViewClass:(Class)backgroundViewClass arrowDirections:(UIPopoverArrowDirection)arrowDirections complete:(void (^ _Nullable)(void))complete;
 
 @end
 

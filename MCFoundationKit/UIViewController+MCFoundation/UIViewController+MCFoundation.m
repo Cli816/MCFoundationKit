@@ -243,12 +243,12 @@
 
 #pragma mark - Popover
 
-- (void)showPopoverController:(UIViewController *)popoverVC contentSize:(CGSize)contentSize sourceView:(UIView *)sourceView delegate:(id<UIPopoverPresentationControllerDelegate>)delegate backgroundViewClass:(Class)backgroundViewClass arrowDirections:(UIPopoverArrowDirection)arrowDirections complete:(void (^)(void))complete {
+- (void)showPopoverController:(UIViewController *)popoverVC contentSize:(CGSize)contentSize sourceView:(UIView *)sourceView backgroundViewClass:(Class)backgroundViewClass arrowDirections:(UIPopoverArrowDirection)arrowDirections complete:(void (^)(void))complete {
     popoverVC.modalPresentationStyle = UIModalPresentationPopover;
     popoverVC.preferredContentSize = contentSize;
     popoverVC.popoverPresentationController.sourceView = sourceView;
     popoverVC.popoverPresentationController.sourceRect = sourceView.bounds;
-    popoverVC.popoverPresentationController.delegate = delegate;
+    popoverVC.popoverPresentationController.delegate = self;
     popoverVC.popoverPresentationController.popoverBackgroundViewClass = backgroundViewClass;
     popoverVC.popoverPresentationController.permittedArrowDirections = arrowDirections;
     popoverVC.popoverPresentationController.backgroundColor = [UIColor clearColor];
@@ -260,6 +260,31 @@
             }
         }];
     });
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    if (self.navigationController.childViewControllers.count == 1) {
+        return NO;
+    }
+    return YES;
+}
+
+#pragma mark - UIAdaptivePresentationControllerDelegate
+
+- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller {
+    return UIModalPresentationNone;
+}
+
+#pragma mark - UIPopoverPresentationControllerDelegate
+
+- (void)prepareForPopoverPresentation:(UIPopoverPresentationController *)popoverPresentationController {
+    [self setPopGestureRecognizerEnabled:NO];
+}
+
+- (void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
+    [self setPopGestureRecognizerEnabled:YES];
 }
 
 @end
