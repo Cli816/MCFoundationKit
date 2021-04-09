@@ -132,6 +132,17 @@
     self.navigationItem.rightBarButtonItems = lMuBarItemsArray;
 }
 
+- (void)setPopGestureRecognizerEnabled:(BOOL)enabled {
+    if (self.navigationController &&
+        [self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        if (enabled) {
+            self.navigationController.interactivePopGestureRecognizer.delegate = self;
+        } else {
+            self.navigationController.interactivePopGestureRecognizer.delegate = nil;
+        }
+    }
+}
+
 #pragma mark - 自定义方法
 
 - (UIView *)createNavigationItemView:(NSString *)title icon:(UIImage *)image type:(int)type font:(UIFont *)font color:(UIColor *)color target:(id)target action:(SEL)action {
@@ -227,6 +238,27 @@
         }];
     });
     return alertController;
+}
+
+#pragma mark - Popover
+
+- (void)showPopoverController:(UIViewController *)popoverVC contentSize:(CGSize)contentSize sourceView:(UIView *)sourceView delegate:(id<UIPopoverPresentationControllerDelegate>)delegate backgroundViewClass:(Class)backgroundViewClass arrowDirections:(UIPopoverArrowDirection)arrowDirections complete:(void (^)(void))complete {
+    popoverVC.modalPresentationStyle = UIModalPresentationPopover;
+    popoverVC.preferredContentSize = contentSize;
+    popoverVC.popoverPresentationController.sourceView = sourceView;
+    popoverVC.popoverPresentationController.sourceRect = sourceView.bounds;
+    popoverVC.popoverPresentationController.delegate = delegate;
+    popoverVC.popoverPresentationController.popoverBackgroundViewClass = backgroundViewClass;
+    popoverVC.popoverPresentationController.permittedArrowDirections = arrowDirections;
+    popoverVC.popoverPresentationController.backgroundColor = [UIColor clearColor];
+    popoverVC.popoverPresentationController.canOverlapSourceViewRect = NO;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:popoverVC animated:YES completion:^{
+            if (complete) {
+                complete();
+            }
+        }];
+    });
 }
 
 @end

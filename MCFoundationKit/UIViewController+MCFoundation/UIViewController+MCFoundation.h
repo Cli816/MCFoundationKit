@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface UIViewController (MCFoundation)
+@interface UIViewController (MCFoundation) <UIGestureRecognizerDelegate>
 
 #pragma mark - Navigation
 
@@ -44,16 +44,18 @@ NS_ASSUME_NONNULL_BEGIN
 */
 - (void)setNavigationItemRightCustomViews:(nullable UIView *)customViews, ... NS_REQUIRES_NIL_TERMINATION;
 
+/**
+ * 设置左滑手势退出
+ */
+- (void)setPopGestureRecognizerEnabled:(BOOL)enabled;
+
 #pragma mark - Alert
 
-- (UIAlertController *)showAlertWithComplete:(void (^ _Nullable)(void))complete
-                               clickedAction:(void (^ _Nullable)(UIAlertAction *action))clickedAction
-                                       title:(nullable NSString *)title
-                                     message:(nullable NSString *)message
-                              preferredStyle:(UIAlertControllerStyle)preferredStyle
-                           cancelButtonTitle:(nullable NSString *)cancelButtonTitle
-                      destructiveButtonTitle:(nullable NSString *)destructiveButtonTitle
-                           otherButtonTitles:(nullable NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION;
+- (UIAlertController *)showAlertWithComplete:(void (^ _Nullable)(void))complete clickedAction:(void (^ _Nullable)(UIAlertAction *action))clickedAction title:(nullable NSString *)title message:(nullable NSString *)message preferredStyle:(UIAlertControllerStyle)preferredStyle cancelButtonTitle:(nullable NSString *)cancelButtonTitle destructiveButtonTitle:(nullable NSString *)destructiveButtonTitle otherButtonTitles:(nullable NSString *)otherButtonTitles, ... NS_REQUIRES_NIL_TERMINATION;
+
+#pragma mark - Popover
+
+- (void)showPopoverController:(UIViewController *)popoverVC contentSize:(CGSize)contentSize sourceView:(UIView *)sourceView delegate:(nullable id<UIPopoverPresentationControllerDelegate>)delegate backgroundViewClass:(Class)backgroundViewClass arrowDirections:(UIPopoverArrowDirection)arrowDirections complete:(void (^ _Nullable)(void))complete;
 
 @end
 
