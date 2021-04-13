@@ -73,7 +73,7 @@
     return string;
 }
 
-- (CGSize)sizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size {
+- (CGSize)strSizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size {
     NSString *str = self;
     CGSize resultSize = CGSizeZero;
     if(str.length > 0){

@@ -45,7 +45,7 @@
         if (font) {
             iFont = font;
         }
-        CGSize labelSize = [title sizeWithFont:iFont constrainedToSize:CGSizeMake(navigationBarFrame.size.width / 2, navigationBarFrame.size.height)];
+        CGSize labelSize = [title strSizeWithFont:iFont constrainedToSize:CGSizeMake(navigationBarFrame.size.width / 2, navigationBarFrame.size.height)];
         UILabel *label = [[UILabel alloc] init];
         label.font = iFont;
         UIColor *iColor = [UIColor blackColor];

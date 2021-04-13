@@ -18,13 +18,9 @@
 
 @end
 
-@interface MCModalDialog()
-
-@property (nonatomic, strong) NSMutableArray<MCModalDialogParam *> *params;
-
-@end
-
 @implementation MCModalDialog
+
+@synthesize params = _params;
 
 #pragma mark- 线程安全的单例模式
 static MCModalDialog *_instance = nil;
@@ -54,9 +50,18 @@ static MCModalDialog *_instance = nil;
 {
     self = [super init];
     if (self) {
-        self.params = [NSMutableArray arrayWithCapacity:0];
+        
     }
     return self;
+}
+
+#pragma mark - 懒加载
+
+- (NSMutableArray<MCModalDialogParam *> *)params {
+    if (!_params) {
+        _params = [NSMutableArray array];
+    }
+    return _params;
 }
 
 #pragma mark - 使用方法

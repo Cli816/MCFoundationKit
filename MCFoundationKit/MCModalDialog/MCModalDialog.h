@@ -36,6 +36,8 @@ typedef NS_OPTIONS(NSUInteger, MCModalDialogShowStyle) {
 
 @interface MCModalDialog : NSObject
 
+@property (nonatomic, strong, readonly) NSMutableArray<MCModalDialogParam *> *params;
+
 /**
  * 弹出，默认（↑）MCModalDialogShowStyle_Bottom
  */

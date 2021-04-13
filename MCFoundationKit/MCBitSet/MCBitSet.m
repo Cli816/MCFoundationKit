@@ -48,9 +48,9 @@
     }
     /*
     if ([bitSetData length] > 0) {
-        NSString *hexStr = [MCUITools convertDataToHexStr:bitSetData];
+        NSString *hexStr = [bitSetData convertDataToHexStr];
         if ([hexStr length] > 0) {
-            self.bitSr = [MCUITools convertHexStrToBinaryStr:hexStr];
+            self.bitSr = [hexStr convertHexStrToBinaryStr];
         }
     }
      */

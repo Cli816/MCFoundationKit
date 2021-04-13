@@ -50,7 +50,7 @@
 /**
  * 计算字符串Size
  */
-- (CGSize)sizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size;
+- (CGSize)strSizeWithFont:(UIFont *)font constrainedToSize:(CGSize)size;
 
 /**
  * 时间字符串转NSDate
