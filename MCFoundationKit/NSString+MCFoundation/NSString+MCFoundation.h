@@ -81,8 +81,11 @@
 
 /**
  * 10进制转16进制
+ * 32位机器的NSInteger为int和long一样都为4字节，有可能溢出，long long为8字节
+ * 64位机器的NSInteger为long和long long一样都是8字节
+ * 所以这里改为long long，不用NSInteger，多占用些空间，可以适配32位机器
  */
-+ (NSString *)convertIntegerToHexStr:(NSInteger)integer;
++ (NSString *)convertLongLongToHexStr:(long long)value;
 
 /**
  * 颜色字符串转换成UIColor

@@ -237,8 +237,8 @@
     return binary;
 }
 
-+ (NSString *)convertIntegerToHexStr:(NSInteger)integer {
-    NSString *hexStr = [NSString stringWithFormat:@"%1lx", integer];
++ (NSString *)convertLongLongToHexStr:(long long)value {
+    NSString *hexStr = [NSString stringWithFormat:@"%1llx", value];
     return hexStr;
 }
 

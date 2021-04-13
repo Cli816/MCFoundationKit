@@ -32,12 +32,12 @@
     for (NSInteger i = [longArray count] - 1; i >= 0; i --) {
         NSNumber *num = longArray[i];
         long value = [num longValue];
-        NSString *str = [NSString convertIntegerToHexStr:value];
+        NSString *str = [NSString convertLongLongToHexStr:value];
         if ([str length] > 0) {
             [bitSetStr appendString:str];
         }
         /*
-        NSData *data = [MCUITools longValueToData:value];
+        NSData *data = [MCUITools longLongValueToData:value];
         if ([data length] > 0) {
             [bitSetData appendData:data];
         }

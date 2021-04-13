@@ -10,14 +10,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- * 动画类型定义
- */
-typedef NS_OPTIONS(NSUInteger, UIToolsAnimationType) {
-    UIToolsAnimationType_Move, // 移动
-    UIToolsAnimationType_Rotation   // 旋转
-};
-
 @interface UIView (MCFoundation)
 
 /**
@@ -46,11 +38,6 @@ typedef NS_OPTIONS(NSUInteger, UIToolsAnimationType) {
  * duration:动画时长
  */
 - (void)transitionWithType:(NSString *)type withSubtype:(NSString *)subtype duration:(CGFloat)duration;
-
-/**
- * UIView动画
- */
-- (void)animateWithType:(UIToolsAnimationType)type duration:(NSTimeInterval)duration value:(CGFloat)value complete:(void(^ _Nullable)(void))completeBlock;
 
 @end
 

@@ -59,38 +59,4 @@
     [view.layer addAnimation:animation forKey:@"animation"];
 }
 
-- (void)animateWithType:(UIToolsAnimationType)type duration:(NSTimeInterval)duration value:(CGFloat)value complete:(void(^)(void))completeBlock {
-    __weak typeof(self) view = self;
-    switch (type) {
-        case UIToolsAnimationType_Move:
-        {
-            [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-                CGRect frame = view.frame;
-                frame.origin.x = frame.origin.x + value;
-                view.frame = frame;
-            } completion:^(BOOL finished) {
-                if (finished) {
-                    completeBlock();
-                }
-            }];
-        }
-            break;
-        case UIToolsAnimationType_Rotation:
-        {
-            CGAffineTransform endAngle = CGAffineTransformMakeRotation(value * (M_PI / 180));
-            [UIView animateWithDuration:duration delay:0 options:UIViewAnimationOptionCurveLinear animations:^{
-                view.transform = endAngle;
-            } completion:^(BOOL finished) {
-                if (finished) {
-                    completeBlock();
-                }
-            }];
-        }
-            break;
-            
-        default:
-            break;
-    }
-}
-
 @end

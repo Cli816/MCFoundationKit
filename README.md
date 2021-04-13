@@ -34,4 +34,4 @@
 
 ...
 
-pod 'MCFoundationKit', '~>1.1.4'
+pod 'MCFoundationKit', '~>1.1.5'

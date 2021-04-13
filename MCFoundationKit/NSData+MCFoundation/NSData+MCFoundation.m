@@ -79,7 +79,7 @@
     return lDataInt;
 }
 
-+ (NSData *)longValueToData:(long)value {
++ (NSData *)longLongValueToData:(long long)value {
     Byte *byte = (Byte *)malloc(sizeof(value));
     
     byte[0] = ((value >> 56) & 0xFF);

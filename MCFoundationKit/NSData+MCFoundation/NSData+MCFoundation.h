@@ -43,8 +43,11 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * long转data
  * 按位转换，前面带补0
+ * 32位机器的NSInteger为int和long一样都为4字节，有可能溢出，long long为8字节
+ * 64位机器的NSInteger为long和long long一样都是8字节
+ * 所以这里改为long long，不用NSInteger，多占用些空间，可以适配32位机器
  */
-+ (NSData *)longValueToData:(long)value;
++ (NSData *)longLongValueToData:(long long)value;
 
 /**
  * 加载gif data为图片
