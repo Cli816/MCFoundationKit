@@ -84,7 +84,7 @@ session = _session;
 
 #pragma mark - 接口方法
 
-- (void)startScanning:(void (^)(BOOL))complete {
+- (void)startScanning:(void (^)(BOOL))completeBlock {
     [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (granted) {
@@ -97,17 +97,17 @@ session = _session;
                         [self.view.layer insertSublayer:self->_layer atIndex:0];
                     }
                     [self.session startRunning];
-                    if (complete) {
-                        complete(YES);
+                    if (completeBlock) {
+                        completeBlock(YES);
                     }
                 } else {
-                    if (complete) {
-                        complete(NO);
+                    if (completeBlock) {
+                        completeBlock(NO);
                     }
                 }
             } else {
-                if (complete) {
-                    complete(NO);
+                if (completeBlock) {
+                    completeBlock(NO);
                 }
             }
         });

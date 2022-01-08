@@ -32,7 +32,7 @@
     
     self.view.backgroundColor = [UIColor blackColor];
     
-    [self.scanner startScanning:^(BOOL result) {
+    [self.scanner startScanning:^(BOOL complete) {
         
     }];
 }

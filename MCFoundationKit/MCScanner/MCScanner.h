@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
  * 开始扫码
  * complete: YES -> 成功，NO -> 失败
  */
-- (void)startScanning:(void (^ _Nullable)(BOOL result))complete;
+- (void)startScanning:(void (^ _Nullable)(BOOL complete))completeBlock;
 
 @end
 
